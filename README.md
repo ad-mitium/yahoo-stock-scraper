@@ -16,21 +16,21 @@ For testing purposes only, DO NOT ABUSE Yahoo's TOS!
     python3 yahoo-stock-scrapyer.py [Yahoo's URL identifier] [Stock identifier] 
 
 ### Example: 
-####Running:
+Running:
 
-'''python3 yahoo-stock-scrapyer.py GC%3DF Gold'''
+```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
 
-####Will output:
+Will output:
 
-'''Gold_YYYY-MM-DD.csv'''
+```Gold_YYYY-MM-DD.csv```
 
-####Running:
+Running:
 
-'''python3 yahoo-stock-scrapyer.py %E5DJI DJI'''
+```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
 
-####Will output:
+Will output:
 
-'''DJI_YYYY-MM-DD.csv'''
+```DJI_YYYY-MM-DD.csv```
 
 
 ## Issues compiling due to importing BeautifulSoup
