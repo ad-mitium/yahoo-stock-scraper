@@ -56,7 +56,7 @@ current_date = str(date_data)
 
 # Craft base folder path, data path, data subfolder and filename
 user = os.getlogin()
-base_folder_path = '/home/'+user+'/Documents/Code/' # python scaper base path
+base_folder_path = '/home/'+user+'/Documents/Code/' # python scraper base path
 data_folder_base_path = 'yahoo-stock-scraper' # path to put data folder into
 subfolder_path = 'data/'
 file_name = alt_stock_name+"_"+current_date+".csv"
