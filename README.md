@@ -17,19 +17,15 @@ For testing purposes only, DO NOT ABUSE Yahoo's TOS!
 
 ### Example: 
 Running:
-
 ```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
 
 Will output:
-
 ```Gold_YYYY-MM-DD.csv```
 
 Running:
-
 ```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
 
 Will output:
-
 ```DJI_YYYY-MM-DD.csv```
 
 
