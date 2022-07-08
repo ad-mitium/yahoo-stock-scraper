@@ -22,7 +22,7 @@ Will output:
 ```DJI_YYYY-MM-DD.csv```
 
 
-## cron job to automate scraper
+### cron job to automate scraper
 cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
 ```
  0,30 9,12,16 * * 1-5 /usr/bin/python3 /home/$USER/{folder path}/yahoo-stock-scraper/yahoo-stock-scraper.py GC%3DF Gold 
