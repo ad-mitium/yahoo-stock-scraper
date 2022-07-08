@@ -4,7 +4,8 @@ Scrapes Yahoo for specified stock and outputs to pre-determined output folder an
 Currently, if run multiple times during a day, it will concatenate into one file per day.
 
 Output folder is hard-coded as 
-    '''Data'''
+```Data```
+
 ## Usage: 
     python3 yahoo-stock-scrapyer.py [Yahoo's URL identifier] [Stock identifier] 
 
