@@ -41,6 +41,8 @@ url_stock_name = args.url_name
 alt_stock_name = args.alt_name
 merge_file = args.mergefile
 
+##### Scraping info #####
+
 # Pretend to be Chrome on Windows 10
 headers = { 
     'User-Agent'      : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36', 
@@ -52,6 +54,21 @@ headers = {
 
 url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
+# Making a GET request
+html_request = requests.get(url, headers=headers, timeout=5)
+
+# Parsing the HTML
+soup_output = BeautifulSoup(html_request.content, 'html.parser')
+
+# Find by id
+div_id = soup_output.find('div', id= 'quote-header-info')
+# Find by class
+datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
+# Get desired content
+content = datafield.text.strip()
+
+
+##### Outputting data to file #####
 # Get time in HH-MM-SS format
 time_data = strftime('%H:%M:%S',localtime()) 
 
@@ -74,19 +91,6 @@ else:
 # Merge output path together before opening file
 output_path = os.path.join(base_folder_path,data_folder_base_path,subfolder_path,file_name)
 data_outfile = open(output_path, 'a')
-
-# Making a GET request
-html_request = requests.get(url, headers=headers, timeout=5)
-
-# Parsing the HTML
-soup_output = BeautifulSoup(html_request.content, 'html.parser')
-
-# Find by id
-div_id = soup_output.find('div', id= 'quote-header-info')
-# Find by class
-datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
-# Get desired content
-content = datafield.text.strip()
 
 # Diagnostic output
 #print(html_request)
