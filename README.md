@@ -14,22 +14,22 @@ Output folder is hard-coded as
     python3 yahoo-stock-scrapyer.py [Yahoo's URL identifier] [Stock identifier] 
 
 ### Examples: 
-Running:
+**Running:**
 ```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
 
->Will output: 
+Will output: 
 ```DJI_YYYY-MM-DD.csv```
 
-Running:
+**Running:**
 ```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
 
->Will output: 
+Will output: 
 ```Gold_YYYY-MM-DD.csv```
 
 Time will be noted with recorded data:
 ```HH:MM:SS:   0.00 ```
 
-Running:
+**Running:**
 ```python3 yahoo-stock-scrapyer.py -m GC%3DF Gold```
 
 >Will output: 
