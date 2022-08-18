@@ -32,6 +32,7 @@ Will yield the output filename:
 
     ```HH:MM:SS:   0.00 ```
 
+#### **Using the -m flag:**
 Executing 
 
     python3 yahoo-stock-scrapyer.py -m GC%3DF Gold
