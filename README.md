@@ -13,14 +13,12 @@ Output folder is hard-coded as
 Running:
 ```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
 
-    Will output:
-```DJI_YYYY-MM-DD.csv```
+    Will output: ```DJI_YYYY-MM-DD.csv```
 
 Running:
 ```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
 
-    Will output:
-```Gold_YYYY-MM-DD.csv```
+    Will output: ```Gold_YYYY-MM-DD.csv```
 
 Time will be noted with recorded data:
 ```HH:MM:SS:   0.00 ```
@@ -28,8 +26,7 @@ Time will be noted with recorded data:
 Running:
 ```python3 yahoo-stock-scrapyer.py -m GC%3DF Gold```
 
-    Will output:
-```Gold.csv```
+    Will output: ```Gold.csv```
 
 Date and time will be noted with recorded data: 
 ```YYYY-MM-DD HH:MM:SS:   0.00 ```
