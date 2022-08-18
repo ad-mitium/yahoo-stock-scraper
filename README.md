@@ -1,7 +1,11 @@
 # yahoo-stock-scraper
 Scrapes Yahoo for specified stock and outputs to pre-determined output folder and file name.
 
-Currently, if run multiple times during a day, it will concatenate into one file per day.
+By default, if run multiple times during a day, it will concatenate into one file per day.
+
+Add 
+```-m``` 
+flag to concatenate data into one file, using the stock name identifier (see examples below).
 
 Output folder is hard-coded as 
 ```Data```
@@ -48,6 +52,7 @@ Issues compiling due to missing bs4 import
 
 ``` apt install python3-bs4 ```
 
-## ToDo
+## To Do
 
 - ~~Add option to merge into one file~~ (completed)
+- Add plotting feature
