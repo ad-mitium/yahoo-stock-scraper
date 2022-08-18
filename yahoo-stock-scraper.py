@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+
 # Authored by Timothy Mui 4/22/2022
-# Version 0.1.0
+# Version 0.1.1
 
 # cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
 # 
@@ -17,7 +18,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime,date,time,timezone
 from time import localtime, strftime
 
-version_info = (0, 1, 0)
+version_info = (0, 1, 1)
 version = '.'.join(str(c) for c in version_info)
 
 # provide description and version info
@@ -30,12 +31,14 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
    epilog=' ')
 parser.add_argument("url_name", nargs='?', default = 'GC%3DF', help='''Enter stock name for URL''')
 parser.add_argument("alt_name", nargs='?', default = 'Gold', help='''Enter common name for stock''')
+parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''Merge output into one file''') 
 parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(version), 
                     help='show the version number and exit')
 args = parser.parse_args()
 
 url_stock_name = args.url_name
 alt_stock_name = args.alt_name
+merge_file = args.mergefile
 
 # Pretend to be Chrome on Windows 10
 headers = { 
@@ -81,6 +84,7 @@ content = datafield.text.strip()
 # Diagnostic output
 #print(html_request)
 #print(div_id)
+#print(merge_file)
 #print(datafield)
 #print(datafield.text.strip())
 #print(output_path)
