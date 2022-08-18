@@ -19,7 +19,8 @@ from datetime import datetime,date,time,timezone
 from time import localtime, strftime
 
 version_info = (0, 1, 1)
-version = '.'.join(str(c) for c in version_info)
+version_number = '.'.join(str(c) for c in version_info)
+version = 'ver. '+version_number
 
 # provide description and version info
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, description='''

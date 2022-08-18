@@ -7,6 +7,10 @@ Add the
 ```-m``` 
 flag to concatenate data into one file, using the stock name identifier (see examples below).
 
+Add the 
+```-v``` 
+flag to show version.
+
 Output folder is hard-coded as 
 ```Data```
 
