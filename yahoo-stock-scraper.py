@@ -100,7 +100,7 @@ content = datafield.text.strip()
 #print(file_name)
 #print(current_date)
 
-# Check if merge_file is true, then don't add current date to in data output
+# Check if merge_file is true, then don't add current date to data in output
 if merge_file: 
     data_outfile.write(f"{current_date} {time_data}:  {content}") # All output taken daily, with date/time noted
 else:
