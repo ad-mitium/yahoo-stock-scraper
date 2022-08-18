@@ -3,40 +3,45 @@ Scrapes Yahoo for specified stock and outputs to pre-determined output folder an
 
 By default, if run multiple times during a day, it will concatenate into one file per day.
 
-Add 
+Add the 
 ```-m``` 
 flag to concatenate data into one file, using the stock name identifier (see examples below).
 
 Output folder is hard-coded as 
 ```Data```
 
+
 ## Usage: 
     python3 yahoo-stock-scrapyer.py [Yahoo's URL identifier] [Stock identifier] 
 
 ### Examples: 
-**Running:**
-```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
+Executing 
 
-Will output: 
+    python3 yahoo-stock-scrapyer.py %E5DJI DJI
+Will yield the output filename: 
 ```DJI_YYYY-MM-DD.csv```
 
-**Running:**
-```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
+Executing
 
-Will output: 
+    python3 yahoo-stock-scrapyer.py GC%3DF Gold
+
+Will yield the output filename: 
 ```Gold_YYYY-MM-DD.csv```
 
-Time will be noted with recorded data:
-```HH:MM:SS:   0.00 ```
+* Time will be noted with recorded data: 
 
-**Running:**
-```python3 yahoo-stock-scrapyer.py -m GC%3DF Gold```
+    ```HH:MM:SS:   0.00 ```
 
->Will output: 
+Executing 
+
+    python3 yahoo-stock-scrapyer.py -m GC%3DF Gold
+
+Will yield the output filename: 
 ```Gold.csv```
 
-Date and time will be noted with recorded data: 
-```YYYY-MM-DD HH:MM:SS:   0.00 ```
+* Date and time will be noted with recorded data: 
+
+    ```YYYY-MM-DD HH:MM:SS:   0.00 ```
 
 
 ### cron job to automate scraper
