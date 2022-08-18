@@ -13,13 +13,13 @@ Output folder is hard-coded as
 Running:
 ```python3 yahoo-stock-scrapyer.py %E5DJI DJI```
 
-Will output:
+    Will output:
 ```DJI_YYYY-MM-DD.csv```
 
 Running:
 ```python3 yahoo-stock-scrapyer.py GC%3DF Gold```
 
-Will output:
+    Will output:
 ```Gold_YYYY-MM-DD.csv```
 
 Time will be noted with recorded data:
@@ -28,7 +28,7 @@ Time will be noted with recorded data:
 Running:
 ```python3 yahoo-stock-scrapyer.py -m GC%3DF Gold```
 
-Will output:
+    Will output:
 ```Gold.csv```
 
 Date and time will be noted with recorded data: 
