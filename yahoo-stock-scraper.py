@@ -48,6 +48,7 @@ headers = {
     'DNT'             : '1', # Do Not Track Request Header 
     'Connection'      : 'close'
 }
+
 url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 # Get time in HH-MM-SS format
@@ -62,9 +63,14 @@ user = os.getlogin()
 base_folder_path = '/home/'+user+'/Documents/Code/' # python scraper base path
 data_folder_base_path = 'yahoo-stock-scraper' # path to put data folder into
 subfolder_path = 'data/'
-file_name = alt_stock_name+"_"+current_date+".csv"
 
-# Merge together before opening file
+# Check if merge_file is true, then don't add current date to filename
+if merge_file: 
+    file_name = alt_stock_name+".csv"
+else:
+    file_name = alt_stock_name+"_"+current_date+".csv"
+
+# Merge output path together before opening file
 output_path = os.path.join(base_folder_path,data_folder_base_path,subfolder_path,file_name)
 data_outfile = open(output_path, 'a')
 
@@ -93,6 +99,10 @@ content = datafield.text.strip()
 #print(file_name)
 #print(current_date)
 
-data_outfile.write(f"{current_date} {time_data}:  {content}")
+# Check if merge_file is true, then don't add current date to in data output
+if merge_file: 
+    data_outfile.write(f"{current_date} {time_data}:  {content}") # All output taken daily, with date/time noted
+else:
+    data_outfile.write(f"{time_data}:  {content}") # All output recorded on same date and only time noted
 data_outfile.write('\n')
 data_outfile.close()
