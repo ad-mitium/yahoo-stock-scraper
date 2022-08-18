@@ -35,3 +35,7 @@ For testing purposes only, DO NOT ABUSE Yahoo's TOS!
 Issues compiling due to missing bs4 import
 
 ``` apt install python3-bs4 ```
+
+## ToDo
+
+- Add option to merge into one file
