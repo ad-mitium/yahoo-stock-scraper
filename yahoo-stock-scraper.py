@@ -30,15 +30,17 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
     Example: python3 yahoo-stock-scrapyer.py GC%3DF Gold
                        ''', 
    epilog=' ')
-parser.add_argument("url_name", nargs='?', default = 'GC%3DF', help='''Enter stock name for URL''')
-parser.add_argument("alt_name", nargs='?', default = 'Gold', help='''Enter common name for stock''')
-parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''Merge output into one file''') 
+#parser.add_argument("url_name", nargs='?', default = 'GC%3DF', help='''Enter stock name for URL''')
+#parser.add_argument("alt_name", nargs='?', default = 'Gold', help='''Enter common name for stock''')
+parser.add_argument("url_div_id_name", help='''Enter stock name for URL''')
+parser.add_argument("alt_id_name", help='''Enter common name for stock''')
+parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''merge data output into one file''') 
 parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(version), 
                     help='show the version number and exit')
 args = parser.parse_args()
 
-url_stock_name = args.url_name
-alt_stock_name = args.alt_name
+url_stock_name = args.url_div_id_name
+alt_stock_name = args.alt_id_name
 merge_file = args.mergefile
 
 ##### Scraping info #####
