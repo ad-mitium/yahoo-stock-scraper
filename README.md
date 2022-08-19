@@ -65,4 +65,5 @@ Issues compiling due to missing bs4 import
 ## To Do
 
 - ~~Add option to merge into one file~~ (completed)
+- ~~Refactor into modular format~~ (completed)
 - Add plotting feature

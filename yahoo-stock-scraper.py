@@ -1,22 +1,18 @@
 #!/usr/bin/env python3
 
 # Authored by Timothy Mui 4/22/2022
-# Version 0.1.1
+# Version 0.2.0
 
 # For testing purposes only, DO NOT ABUSE Yahoo's TOS with this!
 #
-# Issues with BeautifulSoup: apt install python3-bs4
 
-import os
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime,date,time,timezone
-from time import localtime, strftime
 import argparse
+from lib import writefile
+from lib.version import ver_info
 
-version_info = (0, 1, 1)
-version_number = '.'.join(str(c) for c in version_info)
-version = 'ver. '+version_number
+version = ver_info()
+subfolder_path = 'data/'
+data_folder_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
 
 ##### Command line interaction for user supplied variables #####
 # provide description and version info
@@ -40,78 +36,4 @@ url_stock_name = args.url_div_id_name
 alt_stock_name = args.alt_id_name
 merge_file = args.mergefile
 
-##### Scraping info #####
-url = 'https://finance.yahoo.com/quote/'+url_stock_name
-
-# Pretend to be Chrome on Windows 10
-headers = { 
-    'User-Agent'      : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36', 
-    'Accept'          : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
-    'Accept-Language' : 'en-US,en;q=0.5',
-    'DNT'             : '1', # Do Not Track Request Header 
-    'Connection'      : 'close'
-}
-
-# Making a GET request
-html_request = requests.get(url, headers=headers, timeout=5)
-
-# Parsing the HTML
-soup_output = BeautifulSoup(html_request.content, 'html.parser')
-
-# Find by id
-div_id = soup_output.find('div', id= 'quote-header-info')
-# Find by class
-datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
-# Get desired content
-content = datafield.text.strip()
-
-
-##### Formatting data file path and filename #####
-# Get time in HH-MM-SS format
-time_data = strftime('%H:%M:%S',localtime()) 
-
-# Get date in YYYY-MM-DD format
-date_data = date.today()
-current_date = str(date_data)
-
-# Craft base folder path, data path, data subfolder and filename
-user = os.getlogin()
-base_folder_path = '/home/'+user+'/Documents/Code/' # python scraper base path
-data_folder_base_path = 'yahoo-stock-scraper' # path to put data folder into
-subfolder_path = 'data/'
-
-# Check if merge_file is true, then don't add current date to filename
-if merge_file: 
-    file_name = alt_stock_name+'.csv'
-else:
-    file_name = alt_stock_name+'_'+current_date+'.csv'
-
-# Merge output path together before opening file
-output_path = os.path.join(base_folder_path,data_folder_base_path,subfolder_path,file_name)
-
-# Open output file for writing
-data_outfile = open(output_path, 'a')
-
-
-##### Diagnostic output #####
-
-#print(html_request)
-#print(div_id)
-#print(merge_file)
-#print(datafield)
-#print(datafield.text.strip())
-#print(output_path)
-#print(time_data,":  ",content)
-#print(content)
-#print(file_name)
-#print(current_date)
-
-
-##### Outputting data to file #####
-# Check if merge_file is true, then don't add current date to data in output
-if merge_file: 
-    data_outfile.write(f'{current_date} {time_data}:  {content}') # All output taken daily, with date/time noted
-else:
-    data_outfile.write(f'{time_data}:  {content}') # All output recorded on same date and only time noted
-data_outfile.write('\n')
-data_outfile.close()
+data_to_file = writefile.writeout(url_stock_name, alt_stock_name, merge_file, subfolder_path, data_folder_base_path)
