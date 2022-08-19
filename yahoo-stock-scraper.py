@@ -3,25 +3,22 @@
 # Authored by Timothy Mui 4/22/2022
 # Version 0.1.1
 
-# cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
-# 
-# 0,30 9,12,16 * * 1-5 /usr/bin/python3 /home/$USER/{folder path}/yahoo-stock-scraper/yahoo-stock-scraper.py GC%3DF Gold 
-# 
 # For testing purposes only, DO NOT ABUSE Yahoo's TOS with this!
 #
 # Issues with BeautifulSoup: apt install python3-bs4
 
 import os
 import requests
-import argparse
 from bs4 import BeautifulSoup
 from datetime import datetime,date,time,timezone
 from time import localtime, strftime
+import argparse
 
 version_info = (0, 1, 1)
 version_number = '.'.join(str(c) for c in version_info)
 version = 'ver. '+version_number
 
+##### Command line interaction for user supplied variables #####
 # provide description and version info
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, description='''
     Scrapes Yahoo for specified stock and outputs to pre-determined output folder and file name. 
@@ -32,8 +29,8 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
    epilog=' ')
 #parser.add_argument("url_name", nargs='?', default = 'GC%3DF', help='''Enter stock name for URL''')
 #parser.add_argument("alt_name", nargs='?', default = 'Gold', help='''Enter common name for stock''')
-parser.add_argument("url_div_id_name", help='''Enter stock name for URL''')
-parser.add_argument("alt_id_name", help='''Enter common name for stock''')
+parser.add_argument('url_div_id_name', help='''Enter stock name for URL''')
+parser.add_argument('alt_id_name', help='''Enter common name for stock''')
 parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''merge data output into one file''') 
 parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(version), 
                     help='show the version number and exit')
@@ -44,6 +41,7 @@ alt_stock_name = args.alt_id_name
 merge_file = args.mergefile
 
 ##### Scraping info #####
+url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 # Pretend to be Chrome on Windows 10
 headers = { 
@@ -53,8 +51,6 @@ headers = {
     'DNT'             : '1', # Do Not Track Request Header 
     'Connection'      : 'close'
 }
-
-url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 # Making a GET request
 html_request = requests.get(url, headers=headers, timeout=5)
@@ -70,7 +66,7 @@ datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
 content = datafield.text.strip()
 
 
-##### Outputting data to file #####
+##### Formatting data file path and filename #####
 # Get time in HH-MM-SS format
 time_data = strftime('%H:%M:%S',localtime()) 
 
@@ -86,15 +82,19 @@ subfolder_path = 'data/'
 
 # Check if merge_file is true, then don't add current date to filename
 if merge_file: 
-    file_name = alt_stock_name+".csv"
+    file_name = alt_stock_name+'.csv'
 else:
-    file_name = alt_stock_name+"_"+current_date+".csv"
+    file_name = alt_stock_name+'_'+current_date+'.csv'
 
 # Merge output path together before opening file
 output_path = os.path.join(base_folder_path,data_folder_base_path,subfolder_path,file_name)
+
+# Open output file for writing
 data_outfile = open(output_path, 'a')
 
-# Diagnostic output
+
+##### Diagnostic output #####
+
 #print(html_request)
 #print(div_id)
 #print(merge_file)
@@ -106,10 +106,12 @@ data_outfile = open(output_path, 'a')
 #print(file_name)
 #print(current_date)
 
+
+##### Outputting data to file #####
 # Check if merge_file is true, then don't add current date to data in output
 if merge_file: 
-    data_outfile.write(f"{current_date} {time_data}:  {content}") # All output taken daily, with date/time noted
+    data_outfile.write(f'{current_date} {time_data}:  {content}') # All output taken daily, with date/time noted
 else:
-    data_outfile.write(f"{time_data}:  {content}") # All output recorded on same date and only time noted
+    data_outfile.write(f'{time_data}:  {content}') # All output recorded on same date and only time noted
 data_outfile.write('\n')
 data_outfile.close()
