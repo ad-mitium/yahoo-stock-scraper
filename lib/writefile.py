@@ -1,6 +1,7 @@
 from .scrape import bs_scraper
 from .filepath import outputfilepath
 from time import localtime, strftime
+from datetime import date
 
 if (__name__ == '__main__'):    # for unit testing, default to gold as alt_stock_name
     url_stock_name = 'GC%3DF'
@@ -18,6 +19,10 @@ def writeout(url_stock_name, alt_stock_name, merge_file, subfolder_path, data_fo
     ##### Outputting data to file #####
     # Get time in HH-MM-SS format
     time_data = strftime('%H:%M:%S',localtime()) 
+
+    # Get date in YYYY-MM-DD format
+    date_data = date.today()
+    current_date = str(date_data)
 
     # Open output file for writing
     output_path = outputfilepath(alt_stock_name,merge_file,subfolder_path,data_folder_base_path)

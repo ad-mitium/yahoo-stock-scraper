@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 # Authored by Timothy Mui 4/22/2022
-# Version 0.2.0
 
 # For testing purposes only, DO NOT ABUSE Yahoo's TOS with this!
 #
