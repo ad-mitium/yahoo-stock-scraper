@@ -7,9 +7,10 @@
 
 import argparse
 from lib import writefile
-from lib.version import ver_info
+from lib import version as ver
 
-version = ver_info()
+version_number = (0, 2, 1)
+version = ver.ver_info(version_number)
 subfolder_path = 'data/'
 data_folder_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
 
@@ -27,7 +28,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
 parser.add_argument('url_div_id_name', help='''Enter stock name for URL''')
 parser.add_argument('alt_id_name', help='''Enter common name for stock''')
 parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''merge data output into one file''') 
-parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(version), 
+parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(ver.ver_info(version_info)), 
                     help='show the version number and exit')
 args = parser.parse_args()
 
