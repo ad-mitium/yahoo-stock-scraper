@@ -2,9 +2,21 @@
 Scrapes Yahoo for specified stock and outputs to pre-determined output folder and file name.
 
 ## Usage: 
-    python3 yahoo-stock-scrapyer.py [Yahoo's URL identifier] [Stock identifier] 
+By default, if run multiple times during a day, it will concatenate into one file per day. Using one of two flags will alter output.
+ 
+**```-m```** 
+will concatenate data into one file, using the stock name identifier (see examples below).
 
-### Examples: 
+ 
+**```-v```** 
+shows versioning info.  This does not require any other info and will ignore all other flags.
+
+### **Code execution as follows:**
+
+    python3 yahoo-stock-scrapyer.py {flag} [Yahoo's URL identifier] [Stock identifier] 
+Or make the file excutable and leave off the python3 command
+
+### **Examples:** 
 Executing 
 
     python3 yahoo-stock-scrapyer.py %E5DJI DJI
@@ -21,16 +33,6 @@ Will yield the output filename:
 * Time will be noted with recorded data: 
 
     ```HH:MM:SS:   0.00 ```
-
-By default, if run multiple times during a day, it will concatenate into one file per day.
-
-Add the 
-```-m``` 
-flag to concatenate data into one file, using the stock name identifier (see examples below).
-
-Add the 
-```-v``` 
-flag to show version.
 
 
 #### **Using the -m flag:**
@@ -58,12 +60,11 @@ The resulting output directory path is:
 ```/home/```{user}```/Documents/Code/```{yahoo-stock-scraper}```/data```
 
 
-### Creating a cron job to automate scraper
+### **Creating a cron job to automate scraper**
 cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
 ```
  0,30 9,12,16 * * 1-5 /usr/bin/python3 /home/$USER/{folder path}/yahoo-stock-scraper/yahoo-stock-scraper.py GC%3DF Gold 
 ```
-Or make the file excutable and leave off the python3 command
 
 **For testing purposes only, DO NOT ABUSE Yahoo's TOS!**
 
