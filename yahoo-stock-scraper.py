@@ -35,5 +35,10 @@ args = parser.parse_args()
 url_stock_name = args.url_div_id_name
 alt_stock_name = args.alt_id_name
 merge_file = args.mergefile
+disable_unit_test = False
 
-data_to_file = writefile.writeout(url_stock_name, alt_stock_name, merge_file, subfolder_path, data_folder_base_path)
+base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
+
+output_path = writefile.outputfilepath(alt_stock_name,merge_file,subfolder_path,data_folder_base_path)
+
+data_to_file = writefile.writeout(base_url, merge_file, output_path, disable_unit_test) 

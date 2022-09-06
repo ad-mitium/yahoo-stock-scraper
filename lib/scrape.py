@@ -3,13 +3,11 @@ from bs4 import BeautifulSoup
 
 # Issues with BeautifulSoup: apt install python3-bs4
 
-if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
-    url_stock_id = 'GC%3DF'
 
-def bs_scraper(url_stock_id):
+def bs_scraper(url):
 
     ##### Scraping info #####
-    url = 'https://finance.yahoo.com/quote/'+url_stock_id
+#    url = 'https://finance.yahoo.com/quote/'+url_stock_id
 
     # Pretend to be Chrome on Windows 10
     headers = { 
@@ -34,5 +32,6 @@ def bs_scraper(url_stock_id):
     content = datafield.text.strip()
     return content
 
-if (__name__ == '__main__'):
-    print(bs_scraper(url_stock_id))
+if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
+    url = 'https://finance.yahoo.com/quote/GC%3DF'
+    print(bs_scraper(url))
