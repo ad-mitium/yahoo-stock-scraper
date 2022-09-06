@@ -70,4 +70,4 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
 
     print('Data was written to',output_path)
 else:
-    from .scrape import bs_scraper as scraper # fixes relative path issue when not testing
+    from lib.scrape import bs_scraper as scraper # fixes relative path issue when not testing
