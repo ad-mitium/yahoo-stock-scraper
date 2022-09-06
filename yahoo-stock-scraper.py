@@ -28,7 +28,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
 parser.add_argument('url_div_id_name', help='''Enter stock name for URL''')
 parser.add_argument('alt_id_name', help='''Enter common name for stock''')
 parser.add_argument('-m','--mergefile', action='store_true', default = False, help='''merge data output into one file''') 
-parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(ver.ver_info(version_info)), 
+parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(ver.ver_info(version_number)), 
                     help='show the version number and exit')
 args = parser.parse_args()
 
