@@ -10,7 +10,6 @@ from lib import writefile
 from lib import version as ver
 
 version_number = (0, 2, 2)
-version = ver.ver_info(version_number)
 subfolder_path = 'data/'
 data_folder_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
 
