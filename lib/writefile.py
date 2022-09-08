@@ -1,4 +1,5 @@
 import os
+import platform
 from time import localtime, strftime
 from datetime import date
 
@@ -39,10 +40,16 @@ def outputfilepath(alt_stock_id,merge_file,subfolder_path,data_folder_base_path)
     current_date = str(date_data)
 
     # Craft base folder path, data path, data subfolder and filename
+    os_check = platform.system()
+#    print(os_check)  # Diagnostic check
     user = os.getlogin()
-    base_folder_path = '/home/'+user+'/Documents/Code/' # python scraper base path
+    if os_check == "Linux":
+        base_folder_path = '/home/'+user+'/Documents/Code/' # python scraper base path
+        
+    else: # Windows stub, need to test this
+        base_folder_path = 'C:\\Users\\'+user+'\\Documents\\Code'
 
-    # Check if merge_file is true, then don't add current date to filename
+    # Check if merge_file is true, then add current date to filename
     if merge_file: 
         file_name = alt_stock_id+'.csv'
     else:
