@@ -4,7 +4,7 @@ from time import sleep, strftime
 def sleep_time(n):
     start_time = int(strftime('%S'))
     rand_time=randint(1,n)
-    stop_time = start_time+a
+    stop_time = start_time+rand_time
     
     current_time = start_time
 
