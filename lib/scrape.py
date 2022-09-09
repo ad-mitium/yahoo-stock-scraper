@@ -1,10 +1,10 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bSoup
 
 # Issues with BeautifulSoup: apt install python3-bs4
 
 
-def bs_scraper(url):
+def bs_scraper(url_to_scrape):
 
     ##### Scraping info #####
 
@@ -20,13 +20,13 @@ def bs_scraper(url):
     # Making a GET request
     sleep_time(20) # Randomly sleep to increase variability
 
-    html_request = requests.get(url, headers=headers, timeout=10)
+    html_request = requests.get(url_to_scrape, headers=headers, timeout=10)
 
     # Parsing the HTML
-    soup_output = BeautifulSoup(html_request.content, 'html.parser')
+    soup_html_output = bSoup(html_request.content, 'html.parser')
 
     # Find by id
-    div_id = soup_output.find('div', id= 'quote-header-info')
+    div_id = soup_html_output.find('div', id= 'quote-header-info')
     # Find by class
     datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
     # Get desired content
@@ -35,7 +35,7 @@ def bs_scraper(url):
 
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
     from random_sleep import sleep_time
-    url = 'https://finance.yahoo.com/quote/GC%3DF'
-    print(bs_scraper(url))
+    base_url = 'https://finance.yahoo.com/quote/GC%3DF'
+    print(bs_scraper(base_url))
 else:
     from lib.random_sleep import sleep_time

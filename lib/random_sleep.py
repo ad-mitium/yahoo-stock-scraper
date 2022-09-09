@@ -3,13 +3,13 @@ from time import sleep, strftime
 
 def sleep_time(n):
     start_time = int(strftime('%S'))
-    rand_time=randint(1,n)
-    stop_time = start_time+rand_time
+    rand_increment=randint(1,n)
+    stop_time = start_time+rand_increment
     
     current_time = start_time
 
     if printout:
-        print('Sleeping for',rand_time,'seconds. Starting at',start_time,'Stopping at',stop_time)
+        print('Sleeping for',rand_increment,'seconds. Starting at',start_time,'Stopping at',stop_time)
     
     while current_time <= stop_time:
         sleep(1)
