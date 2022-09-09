@@ -18,7 +18,9 @@ def bs_scraper(url):
     }
 
     # Making a GET request
-    html_request = requests.get(url, headers=headers, timeout=5)
+    sleep_time() # Randomly sleep to increase variability
+
+    html_request = requests.get(url, headers=headers, timeout=10)
 
     # Parsing the HTML
     soup_output = BeautifulSoup(html_request.content, 'html.parser')
@@ -32,5 +34,8 @@ def bs_scraper(url):
     return content
 
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
+    from random_sleep import sleep_time
     url = 'https://finance.yahoo.com/quote/GC%3DF'
     print(bs_scraper(url))
+else:
+    from lib.random_sleep import sleep_time
