@@ -22,7 +22,7 @@ def sleep_time(n):
 if (__name__ == '__main__'):    # for unit testing
     printout = True
 
-    sleep_time()
+    sleep_time(10)
     print(f'\r') # Don't write over final number printed out for remaining
 else:
     printout = False
