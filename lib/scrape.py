@@ -18,7 +18,7 @@ def bs_scraper(url):
     }
 
     # Making a GET request
-    sleep_time() # Randomly sleep to increase variability
+    sleep_time(20) # Randomly sleep to increase variability
 
     html_request = requests.get(url, headers=headers, timeout=10)
 

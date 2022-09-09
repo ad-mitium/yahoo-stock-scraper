@@ -1,15 +1,15 @@
 from random import randint
 from time import sleep, strftime
 
-def sleep_time():
+def sleep_time(n):
     start_time = int(strftime('%S'))
-    a=randint(1,20)
+    rand_time=randint(1,n)
     stop_time = start_time+a
     
     current_time = start_time
 
     if printout:
-        print('Sleeping for',a,'seconds. Starting at',start_time,'Stopping at',stop_time)
+        print('Sleeping for',rand_time,'seconds. Starting at',start_time,'Stopping at',stop_time)
     
     while current_time <= stop_time:
         sleep(1)
