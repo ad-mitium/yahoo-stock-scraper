@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bSoup
 
 # Issues with BeautifulSoup: apt install python3-bs4
 
-def get_page(url_to_scrape):
+def get_page(url_to_scrape, is_unit_test=False):
 
     # Pretend to be Chrome on Windows 10
     headers = { 
@@ -13,18 +13,31 @@ def get_page(url_to_scrape):
         'DNT'             : '1', # Do Not Track Request Header 
         'Connection'      : 'close'
     }
+    if is_unit_test:
+        print('get page unit test:',is_unit_test)
 
     # Making a GET request
-    html_request = requests.get(url_to_scrape, headers=headers, timeout=10)
-    return (html_request)
+    try:
+        html_request = requests.get(url_to_scrape, headers=headers, timeout=10)
+        if html_request.status_code == 200:
+            if is_unit_test:
+                print('Success:',html_request.status_code)
+            return (html_request)
+    except Exception as e:
+        if is_unit_test:
+            print('An error has occurred getting page with status code:',html_request.status_code)
+        return (html_request)
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
+    print(is_unit_test)
     if not is_unit_test:
         sleep_time(20) # Randomly sleep to increase variability
+        web_request = get_page(url_to_scrape)
+    else:
+        web_request = get_page(url_to_scrape,is_unit_test)
 
-    web_request = get_page(url_to_scrape)
-
+    
     # Parsing the HTML
     soup_html_output = bSoup(web_request.content, 'html.parser')
 
