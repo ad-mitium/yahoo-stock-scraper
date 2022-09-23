@@ -40,4 +40,4 @@ base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 output_path = writefile.create_output_filepath(alt_stock_name,merge_file,subfolder_path,data_folder_output_base_path)
 
-data_to_file = writefile.write_data(base_url, merge_file, output_path, enable_unit_test) 
+data_to_file = writefile.write_data(base_url, merge_file, output_path) 

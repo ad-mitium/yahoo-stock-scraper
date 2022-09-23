@@ -4,7 +4,7 @@ from time import localtime, strftime
 from datetime import date
 
 ##### Outputting data to file #####
-def write_data(url, merge_file_test, data_output_path, is_unit_test):
+def write_data(url, merge_file_test, data_output_path, is_unit_test=False):
 
     # Get time in HH-MM-SS format
     time_data = strftime('%H:%M:%S',localtime()) 
@@ -62,7 +62,7 @@ def create_output_filepath(alt_stock_id,merge_file_test,data_subfolder_path,data
 
 ##### For Unit testing #####
 if (__name__ == '__main__'):    # default to gold as url and stock_name
-    from scrape import bs_scraper as scraper
+#    from scrape import bs_scraper as scraper
 
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     alt_stock_name = 'Gold'

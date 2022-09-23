@@ -3,10 +3,7 @@ from bs4 import BeautifulSoup as bSoup
 
 # Issues with BeautifulSoup: apt install python3-bs4
 
-
-def bs_scraper(url_to_scrape):
-
-    ##### Scraping info #####
+def get_page(url_to_scrape):
 
     # Pretend to be Chrome on Windows 10
     headers = { 
@@ -18,12 +15,18 @@ def bs_scraper(url_to_scrape):
     }
 
     # Making a GET request
-    sleep_time(20) # Randomly sleep to increase variability
-
     html_request = requests.get(url_to_scrape, headers=headers, timeout=10)
+    return (html_request)
+
+##### Scraping info #####
+def bs_scraper(url_to_scrape, is_unit_test=False):
+    if not is_unit_test:
+        sleep_time(20) # Randomly sleep to increase variability
+
+    web_request = get_page(url_to_scrape)
 
     # Parsing the HTML
-    soup_html_output = bSoup(html_request.content, 'html.parser')
+    soup_html_output = bSoup(web_request.content, 'html.parser')
 
     # Find by id
     div_id = soup_html_output.find('div', id= 'quote-header-info')
@@ -35,7 +38,10 @@ def bs_scraper(url_to_scrape):
 
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
     from random_sleep import sleep_time
+    unit_test=True
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
-    print(bs_scraper(base_url))
+    print(bs_scraper(base_url,unit_test))
 else:
     from lib.random_sleep import sleep_time
+    
+    print()
