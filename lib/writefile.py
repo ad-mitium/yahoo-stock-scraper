@@ -17,7 +17,7 @@ def write_data(url, merge_file_test, data_output_path, is_unit_test=False):
     data_outfile = open( data_output_path , 'a')
 
     ##### Get data from web #####
-    if (not is_unit_test):
+    if (not is_unit_test):    # Actual attempt to scrape
         content = scraper(url)     
 
         # Check if merge_file is true, then don't add current date to data in output

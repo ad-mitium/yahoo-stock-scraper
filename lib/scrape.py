@@ -14,7 +14,7 @@ def get_page(url_to_scrape, is_unit_test=False):
         'Connection'      : 'close'
     }
     if is_unit_test:
-        print('get page unit test:',is_unit_test)
+        print('get_page unit test:',is_unit_test)
 
     # Making a GET request
     try:
@@ -23,14 +23,19 @@ def get_page(url_to_scrape, is_unit_test=False):
             if is_unit_test:
                 print('Success:',html_request.status_code)
             return (html_request)
-    except Exception as e:
+    except requests.exceptions.Timeout() as e_t:
         if is_unit_test:
-            print('An error has occurred getting page with status code:',html_request.status_code)
-        return (html_request)
+            print('A timeout error has occurred getting page with status code:',html_request.status_code, e_t.exceptions.Timeout)
+        return "An exception has occurred:" + repr(e_t)
+#        raise SystemExit(e)
+    except requests.exceptions.RequestException as e:
+        if is_unit_test:
+            print('An error has occurred getting page with status code:',html_request.status_code, e.exceptions.ConnectionError)
+        raise SystemExit(e)
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
-    print(is_unit_test)
+ #   print(is_unit_test)
     if not is_unit_test:
         sleep_time(20) # Randomly sleep to increase variability
         web_request = get_page(url_to_scrape)
@@ -53,6 +58,7 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     from random_sleep import sleep_time
     unit_test=True
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
+
     print(bs_scraper(base_url,unit_test))
 else:
     from lib.random_sleep import sleep_time
