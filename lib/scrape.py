@@ -23,15 +23,17 @@ def get_page(url_to_scrape, is_unit_test=False):
             if is_unit_test:
                 print('Success:',html_request.status_code)
             return (html_request)
+        html_request.raise_for_status()
     except requests.exceptions.Timeout() as e_t:
         if is_unit_test:
-            print('A timeout error has occurred getting page with status code:',html_request.status_code, e_t.exceptions.Timeout)
-        return "An exception has occurred:" + repr(e_t)
+            print('A timeout error has occurred getting page with error message: \n',e_t)
+        return "A timeout exception has occurred:" + repr(e_t)
 #        raise SystemExit(e)
     except requests.exceptions.RequestException as e:
         if is_unit_test:
-            print('An error has occurred getting page with status code:',html_request.status_code, e.exceptions.ConnectionError)
-        raise SystemExit(e)
+            print('An error has occurred getting page with error message: \n', e)
+#        raise SystemExit(e)
+        return "An exception has occurred: \n" + repr(e)
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
@@ -59,7 +61,7 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     unit_test=True
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
 
-    print(bs_scraper(base_url,unit_test))
+    print('Returned: ',bs_scraper(base_url,unit_test))
 else:
     from lib.random_sleep import sleep_time
     
