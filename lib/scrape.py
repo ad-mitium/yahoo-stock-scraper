@@ -48,12 +48,15 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
     # Parsing the HTML
     soup_html_output = bSoup(web_request.content, 'html.parser')
 
-    # Find by id
-    div_id = soup_html_output.find('div', id= 'quote-header-info')
-    # Find by class
-    datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
-    # Get desired content
-    content = datafield.text.strip()
+    if "exception has occurred:" not in soup_html_output:
+        # Find by id
+        div_id = soup_html_output.find('div', id= 'quote-header-info')
+        # Find by class
+        datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
+        # Get desired content
+        content = datafield.text.strip()
+    else:
+        content = soup_html_output   # send exception as data
     return content
 
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
