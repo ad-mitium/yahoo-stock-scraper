@@ -9,7 +9,7 @@ import argparse
 from lib import writefile
 from lib import version as ver
 
-version_number = (0, 2, 3)
+version_number = (0, 2, 4)
 subfolder_path = 'data/'
 data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
 
@@ -34,7 +34,6 @@ args = parser.parse_args()
 url_stock_name = args.url_div_id_name
 alt_stock_name = args.alt_stock_id_name
 merge_file = args.mergefile
-enable_unit_test = False
 
 base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
