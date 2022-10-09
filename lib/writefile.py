@@ -60,7 +60,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     alt_stock_name = 'Gold'
     merge_file = False     # Expected test case, change to "True" for testing alternative option of one large file
-    subfolder_path = 'data/'
+    subfolder_path = 'data'
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     unit_test = True     # Disable call to scrape.py
 
