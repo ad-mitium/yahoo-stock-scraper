@@ -1,6 +1,10 @@
 # yahoo-stock-scraper
 
-Scrapes Yahoo for specified stock and outputs to pre-determined output folder and file name.
+Scrapes Yahoo for specified stock and outputs to pre-determined output folder and file name.  Relies on the following external python packages:
+
+```requests```
+and
+```beautifulsoup4```
 
 ## Usage
 
@@ -70,9 +74,7 @@ or
 
 cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
 
-```
      0,30 9,12,16 * * 1-5 /usr/bin/python3 /home/$USER/{folder path}/yahoo-stock-scraper/yahoo-stock-scraper.py GC%3DF Gold 
-```
 
 **For testing purposes only, DO NOT ABUSE Yahoo's TOS!**
 
@@ -80,11 +82,15 @@ cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16
 
 Issues compiling due to missing bs4 import
 
+For Linux:
 ``` apt install python3-bs4 ```
+
+For Windows:
+```pip install beautifulsoup4```
 
 ## To Do
 
 * ~~Add option to merge into one file~~ (completed)
 * ~~Refactor into modular format~~ (completed)
-* Work out windows folder output path (partially completed)
-* Add plotting feature. Or a new project for it
+* ~~Work out windows folder output path~~ (completed)
+* Add plotting feature. Or create a new project for it
