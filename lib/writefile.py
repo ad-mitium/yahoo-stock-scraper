@@ -14,11 +14,12 @@ def write_data(url, merge_file_test, data_output_path, is_unit_test=False):
     current_date = str(date_data)
 
     # Open output file for writing
-    if os.path.exists(data_output_path):
+    if os.path.exists(os.path.dirname(data_output_path)):
+#        print(os.path.dirname(data_output_path))
         data_outfile = open( data_output_path , 'a')
     else:
-#        print('Failed to find path to data')
-        raise SystemExit(data_output_path+' not found')
+#        print('Failed to find path to data '+ os.path.dirname(data_output_path))
+        raise SystemExit('Path to '+data_output_path+' not found')
 
     ##### Get data from web #####
     if (not is_unit_test):    # Actually attempt to scrape
