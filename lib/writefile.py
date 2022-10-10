@@ -57,8 +57,8 @@ def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,
         file_name = alt_stock_id+'_'+current_date+'.csv'
 
     # Merge output path together 
-    output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,file_name)
-    return output_path
+    joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,file_name)
+    return joined_output_path
 
 
 ##### For Unit testing #####
