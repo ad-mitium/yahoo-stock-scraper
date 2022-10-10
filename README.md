@@ -11,7 +11,10 @@ and
 By default, if run multiple times during a day, it will concatenate into one file per day. Using one of two flags will alter output.
 
 **```-m```**
-will concatenate data into one file, using the stock name identifier (see examples below).
+will concatenate data into one large file, using the stock name identifier (see examples below).
+
+**```-mo```**
+will concatenate data into one monthly file, using the stock name identifier (see examples below). Take note that this will supercede the large file option.
 
 **```-v```**
 shows versioning info.  This does not require any other info and will ignore all other flags.
@@ -40,7 +43,7 @@ Will yield the output filename:
 
     ```HH:MM:SS:   0.00```
 
-#### **Using the -m flag:**
+#### **Using the -m or -mo flag:**
 
 Executing
 
@@ -52,6 +55,8 @@ Will yield the output filename:
 * Date and time will be noted with recorded data:
 
     ```YYYY-MM-DD HH:MM:SS:   0.00```
+
+Note that using ```-mo``` will create a file name: ```Gold-Mmm.csv```
 
 ## Output info
 
