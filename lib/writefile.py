@@ -27,9 +27,9 @@ def write_data(url, merge_file_test, merge_file_monthly_test, data_output_path, 
 
         # Check if merge_file is true, then don't add current date to data in output
         if merge_file_test or merge_file_monthly_test: 
-            data_outfile.write(f'{current_date} {time_data}:  {content}') # All output taken daily, with date/time noted
+            data_outfile.write(f'{current_date}_{time_data}: {content}') # All output taken daily, with date/time noted
         else:
-            data_outfile.write(f'{time_data}:  {content}') # All output recorded on same date and only time noted
+            data_outfile.write(f'{time_data}: {content}') # All output recorded on same date and only time noted
     else:
         data_outfile.write(f'Unit test at {time_data} on {current_date}')
     data_outfile.write('\n')

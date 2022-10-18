@@ -41,7 +41,7 @@ Will yield the output filename:
 
 * Time will be noted with recorded data:
 
-    ```HH:MM:SS:   0.00```
+    ```HH:MM:SS: 0.00```
 
 #### **Using the -m or -mo flag:**
 
@@ -54,7 +54,7 @@ Will yield the output filename:
 
 * Date and time will be noted with recorded data:
 
-    ```YYYY-MM-DD HH:MM:SS:   0.00```
+    ```YYYY-MM-DD_HH:MM:SS:  0.00```
 
 Note that using ```-mo``` will create a file name: ```Gold-Mmm.csv```
 
