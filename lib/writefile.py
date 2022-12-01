@@ -68,13 +68,14 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     alt_stock_name = 'Gold'
     merge_file = False     # Expected test case, change to "True" for testing alternative option of one large file
+    merge_file_monthly = False     # Expected test case, change to "True" for testing alternative option of one large file
     subfolder_path = 'data'
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     unit_test = True     # Disable call to scrape.py
 
-    output_path = create_output_filepath(alt_stock_name,merge_file,subfolder_path,data_folder_output_base_path)
+    output_path = create_output_filepath(alt_stock_name,merge_file,merge_file_monthly,subfolder_path,data_folder_output_base_path)
     
-    write_data(base_url, merge_file, output_path, unit_test)
+    write_data(base_url, merge_file, merge_file_monthly, output_path, unit_test)
 
     print('Data was written to',output_path)
 else:
