@@ -44,6 +44,8 @@ def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,
     date_data = date.today()
     current_date = str(date_data)
     month_date = strftime('%b-%Y')
+    year = strftime('%Y',localtime())
+    month = strftime('%B',localtime())
 
     # Craft base folder path, data path, data subfolder and filename
     base_folder_path = Path.home() / 'Documents'/ 'Code'  # python scraper base path
@@ -51,13 +53,21 @@ def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,
     # Check if merge_file is true, then add current date to filename
     if merge_file_monthly_test: 
         file_name = alt_stock_id+'-'+month_date+'.csv'
+        # # Merge output path together, sort by year 
+        # joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
     elif merge_file_test:
         file_name = alt_stock_id+'.csv'
+        # # Merge output path together, sort by year
+        # joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
     else:
         file_name = alt_stock_id+'_'+current_date+'.csv'
+        # Merge output path together, sort by year and month
+        joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month,file_name)
 
-    # Merge output path together 
-    joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,file_name)
+    if any([merge_file_monthly_test, merge_file_test]):
+        # Merge output path together, sort by year 
+        joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
+
     return joined_output_path
 
 
@@ -68,7 +78,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     alt_stock_name = 'Gold'
     merge_file = False     # Expected test case, change to "True" for testing alternative option of one large file
-    merge_file_monthly = False     # Expected test case, change to "True" for testing alternative option of one large file
+    merge_file_monthly = False     # Expected test case, change to "True" for testing alternative option of one large file per month
     subfolder_path = 'data'
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     unit_test = True     # Disable call to scrape.py

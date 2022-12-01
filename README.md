@@ -98,4 +98,5 @@ For Windows:
 * ~~Add option to merge into one file~~ (completed)
 * ~~Refactor into modular format~~ (completed)
 * ~~Work out windows folder output path~~ (completed)
+* Folder management needs testing for creating non-existent folders
 * Add plotting feature. Or create a new project for it
