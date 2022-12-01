@@ -3,6 +3,16 @@ from pathlib import Path
 from time import localtime, strftime
 from datetime import date
 
+def test_path(output_folder_path):
+    if os.path.exists(output_folder_path):
+        # print(os.path.dirname(output_folder_path))
+        pass
+    else:
+#        print('Failed to find path to data '+ os.path(data_output_path))
+        Path(output_folder_path).mkdir( parents=True, exist_ok=True)
+        # raise SystemExit('Path to '+output_folder_path+' not found')
+
+
 ##### Outputting data to file #####
 def write_data(url, merge_file_test, merge_file_monthly_test, data_output_path, is_unit_test=False):
 
@@ -53,22 +63,22 @@ def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,
     # Check if merge_file is true, then add current date to filename
     if merge_file_monthly_test: 
         file_name = alt_stock_id+'-'+month_date+'.csv'
-        # # Merge output path together, sort by year 
-        # joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
     elif merge_file_test:
         file_name = alt_stock_id+'.csv'
-        # # Merge output path together, sort by year
-        # joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
     else:
         file_name = alt_stock_id+'_'+current_date+'.csv'
-        # Merge output path together, sort by year and month
-        joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month,file_name)
+        # Merge output path together, sort in folder by year and month 
+        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month)
 
     if any([merge_file_monthly_test, merge_file_test]):
-        # Merge output path together, sort by year 
-        joined_output_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,file_name)
+        # Merge output path together, sort in folder by year 
+        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year)
 
-    return joined_output_path
+    test_path(joined_output_folder_path)
+    # print (joined_output_folder_path)
+    joined_output = os.path.join(joined_output_folder_path,file_name)
+    # print(joined_output)
+    return joined_output
 
 
 ##### For Unit testing #####
