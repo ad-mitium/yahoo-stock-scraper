@@ -62,7 +62,8 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
     from random_sleep import sleep_time
     unit_test=True
-    base_url = 'https://finance.yahoo.com/quote/GC%3DF'
+    stock='GC%3DF'
+    base_url = 'https://finance.yahoo.com/quote/'+str(stock)
 
     print('Returned: ',bs_scraper(base_url,unit_test))
 else:
