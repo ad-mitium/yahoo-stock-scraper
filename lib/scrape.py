@@ -24,16 +24,16 @@ def get_page(url_to_scrape, is_unit_test=False):
                 print('Success:',html_request.status_code)
             return (html_request)
         html_request.raise_for_status()
-    except requests.exceptions.Timeout() as e_t:
+    except requests.exceptions.Timeout as e_t:
         if is_unit_test:
             print('A timeout error has occurred getting page with error message: \n',e_t)
-        return "A timeout exception has occurred:" + repr(e_t)
+        return ("A timeout exception has occurred:" + repr(e_t))
 #        raise SystemExit(e)
     except requests.exceptions.RequestException as e:
         if is_unit_test:
             print('An error has occurred getting page with error message: \n', e)
 #        raise SystemExit(e)
-        return "An exception has occurred: \n" + repr(e)
+        return ("An exception has occurred: \n" + repr(e))
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
