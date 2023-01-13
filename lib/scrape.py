@@ -77,11 +77,11 @@ def bs_scraper_2(url_to_scrape, stock_data, is_unit_test=False):
 
         for divs in div_ids:
             if divs.has_attr('data-symbol'):
-                number_data=divs['data-symbol']
+                data_symbol=divs['data-symbol']
                 if divs.has_attr('data-field'):
                     data_type=divs['data-field']
                 for stock_name in stock_data:
-                    if number_data==stock_name and data_type=='regularMarketPrice':
+                    if data_symbol==stock_name and data_type=='regularMarketPrice':
                         d[stock_name] = divs.text.strip()
                         # print(stock_name, end=' ')
                         # print (divs.text.strip())
