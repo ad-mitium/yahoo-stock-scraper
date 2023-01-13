@@ -73,9 +73,9 @@ def bs_scraper_2(url_to_scrape, stock_data, is_unit_test=False):
 
     if "exception has occurred:" not in soup_html_output:
         # Find by id
-        div_ids=soup_html_output.find('div')
+        div_ids=soup_html_output.find('div').find_all("fin-streamer")
 
-        for divs in div_ids.find_all("fin-streamer"):
+        for divs in div_ids:
             if divs.has_attr('data-symbol'):
                 number_data=divs['data-symbol']
                 if divs.has_attr('data-field'):
