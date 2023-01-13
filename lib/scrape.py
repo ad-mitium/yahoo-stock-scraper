@@ -59,12 +59,49 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         content = soup_html_output   # send exception as data
     return content
 
+def bs_scraper_2(url_to_scrape, stock_data, is_unit_test=False):
+    d={}
+#   print(is_unit_test)
+    if not is_unit_test:
+        sleep_time(20) # Randomly sleep to increase variability
+        web_request = get_page(url_to_scrape)
+    else:
+        web_request = get_page(url_to_scrape,is_unit_test)
+
+    # Parsing the HTML
+    soup_html_output = bSoup(web_request.content, 'html.parser')
+
+    if "exception has occurred:" not in soup_html_output:
+        # Find by id
+        div_ids=soup_html_output.find('div')
+
+        for divs in div_ids.find_all("fin-streamer"):
+            if divs.has_attr('data-symbol'):
+                number_data=divs['data-symbol']
+                if divs.has_attr('data-field'):
+                    data_type=divs['data-field']
+                for stock_name in stock_data:
+                    if number_data==stock_name and data_type=='regularMarketPrice':
+                        d[stock_name] = divs.text.strip()
+                        # print(stock_name, end=' ')
+                        # print (divs.text.strip())
+            else:
+                datafield='Data not found'
+        print(d)
+        content = 'datafield'
+    else:
+        content = soup_html_output   # send exception as data
+    # return content
+
 if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
     from random_sleep import sleep_time
     unit_test=True
     stock='GC%3DF'
+    # stock='NG%3DF'
+    stock_names = ['GC=F','CL=F','^DJI','NG=F']
     base_url = 'https://finance.yahoo.com/quote/'+str(stock)
 
+    # bs_scraper_2(base_url,stock_names)
     print('Returned: ',bs_scraper(base_url,unit_test))
 else:
     from lib.random_sleep import sleep_time
