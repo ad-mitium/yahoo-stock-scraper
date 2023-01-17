@@ -98,5 +98,8 @@ For Windows:
 * ~~Add option to merge into one file~~ (completed)
 * ~~Refactor into modular format~~ (completed)
 * ~~Work out windows folder output path~~ (completed)
-* Folder management needs testing for creating non-existent folders
+* ~~Create a second scraper for commodities that only makes one web request~~ (completed)
+* Take commodities data and output it to individual files for each commodity
+* Add flag for commodities scraping
+* ~~Folder management needs testing for creating non-existent folders~~ (completed)
 * Add plotting feature. Or create a new project for it
