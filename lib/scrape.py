@@ -26,7 +26,10 @@ def get_page(url_to_scrape, is_unit_test=False):
     try:
         if is_unit_test:
             # print(is_unit_test)
-            html_request = read_data(sample_data)
+            if stock in url_to_scrape:
+                html_request = read_data(sample_data_single)
+            else:
+                html_request = read_data(sample_data)
             return (html_request)
         else:
             html_request = requests.get(url_to_scrape, headers=headers, timeout=10)
@@ -115,6 +118,8 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     # stock='NG%3DF'
     stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG' }
     sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html'
+    sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html'
+
     base_url = 'https://finance.yahoo.com/quote/'+str(stock)
     base_url_com = 'https://finance.yahoo.com/commodities'
 
