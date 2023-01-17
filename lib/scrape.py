@@ -113,10 +113,12 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     from random_sleep import sleep_time
     from pathlib import Path
     unit_test=True
-    data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
+    folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     stock='GC%3DF'
     # stock='NG%3DF'
     stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG' }
+
+    # You must do this unit test from the base folder path (<Location this code repo is stored> / folder_output_base_path)
     sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html'
     sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html'
 
