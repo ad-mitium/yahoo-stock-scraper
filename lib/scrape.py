@@ -106,18 +106,19 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
         content = soup_html_output   # send exception as data
     return content
 
-if (__name__ == '__main__'):    # for unit testing, default to natural gas as url_stock_name
+if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock_name
     from random_sleep import sleep_time
     from pathlib import Path
     unit_test=True
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
-    # stock='GC%3DF'
-    stock='NG%3DF'
+    stock='GC%3DF'
+    # stock='NG%3DF'
     stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG' }
     sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html'
     base_url = 'https://finance.yahoo.com/quote/'+str(stock)
+    base_url_com = 'https://finance.yahoo.com/commodities'
 
-    print('Returned: ',bs_scraper_2(base_url,stock_alt_names,unit_test))
+    print('Returned: ',bs_scraper_2(base_url_com,stock_alt_names,unit_test))
     print('Returned: ',bs_scraper(base_url,unit_test))
 else:
     from lib.random_sleep import sleep_time
