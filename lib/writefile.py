@@ -57,7 +57,8 @@ def write_data_commodities(url, comm_type, base_folder_path, subfolder_path, csv
     current_date = strftime('%Y-%m-%d')
 
     # Read in list of commodities from csv file
-    comm_folder_path=str(Path().absolute())+'/'+csv_list_folder+'/'
+    comm_folder_path=str(Path.home() / 'Documents'/ 'Code')+'/'+base_folder_path+'/'+csv_list_folder+'/'
+    # print(str(comm_folder_path))
     commodities=csv_reader(comm_folder_path,comm_type)
     # print('Commodities to scrape:',commodities)
 
