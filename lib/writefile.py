@@ -49,7 +49,7 @@ def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, 
     return (data_output_path)
 
 ##### Create the output file path and filename depending on merge_file flag #####
-def create_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_path,merge_file_test,merge_file_monthly_test,add_year=True):
+def create_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_path,merge_file_test,merge_file_monthly_test,add_year=True,use_filename=True):
     ##### Formatting data file path and filename #####
     # Get date in YYYY-MM-DD format
     current_date = strftime('%Y-%m-%d')
@@ -61,22 +61,31 @@ def create_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_pat
     base_folder_path = Path.home() / 'Documents'/ 'Code'  # python scraper base path
 
     # Check if merge_file is true, then add current date to filename
-    if merge_file_monthly_test:
-        file_name = alt_stock_id+'-'+month_date+'.csv'
-    elif merge_file_test:
-        file_name = alt_stock_id+'.csv'
+    if use_filename:
+        if merge_file_monthly_test:
+            file_name = alt_stock_id+'-'+month_date+'.csv'
+        elif merge_file_test:
+            file_name = alt_stock_id+'.csv'
+        else:
+            file_name = alt_stock_id+'_'+current_date+'.csv'
+            # Merge output path together, sort in folder by year and month
+            joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month)
     else:
-        file_name = alt_stock_id+'_'+current_date+'.csv'
-        # Merge output path together, sort in folder by year and month
-        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month)
+        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year)
 
     if any([merge_file_monthly_test, merge_file_test]):
         # Merge output path together, sort in folder by year
         joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year)
 
+    if not add_year:
+        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path) # no year
+
     test_path(joined_output_folder_path)
     # print (joined_output_folder_path)
-    joined_output = joinpath(joined_output_folder_path,file_name)
+    if not use_filename:
+        joined_output = joined_output_folder_path # no file_name
+    else:
+        joined_output = joinpath(joined_output_folder_path,file_name)
     # print(joined_output)
     return joined_output
 
@@ -89,13 +98,15 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     alt_stock_name = 'Gold'
     merge_file = False     # Expected test case, change to "True" for testing alternative option of one large file
     merge_file_monthly = False     # Expected test case, change to "True" for testing alternative option of one large file per month
+    use_year = True
+    use_file_name = True
     subfolder_path = 'data'
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     unit_test = True     # Disable call to scrape.py
 
-    output_path = create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
+    output_path = create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly,use_year,use_file_name)
 
-    write_data(base_url, output_path, merge_file, merge_file_monthly, unit_test)
+    # write_data(base_url, output_path, merge_file, merge_file_monthly, unit_test)
 
     print('Data was written to',output_path)
 else:
