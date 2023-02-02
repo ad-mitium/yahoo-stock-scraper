@@ -27,6 +27,7 @@ will scrape data from a CSV file in the ```csv_config_files``` folder, with the 
     -i      Scrape market indexes
     -f      Scrape fuel futures
     -p      Scrape precious metal futures
+    -o      Scrape user supplied list of commodities
 
 ### **Code execution as follows:**
 

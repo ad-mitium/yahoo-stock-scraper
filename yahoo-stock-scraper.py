@@ -31,6 +31,7 @@ parser.add_argument('-c','--comm-type', action='store_true', default = False, he
 parser.add_argument('-f','--fuels', action='store_true', default = False, help='''select fuel commodities''') 
 parser.add_argument('-i','--indexes', action='store_true', default = False, help='''select indexes''') 
 parser.add_argument('-p','--precious-metals', action='store_true', default = False, help='''select precious metals commodities''') 
+parser.add_argument('-o','--other', action='store_true', default = False, help='''select custom list of commodities''') 
 parser.add_argument('-m','--mergefile-large', action='store_true', default = False, help='''merge data output into one file''') 
 parser.add_argument('-mo','--mergefile-monthly', action='store_true', default = False, help='''merge data output into one monthly file''') 
 parser.add_argument('-v','--version', action='version', version='%(prog)s {}'.format(ver.ver_info(version_number)), 
@@ -57,6 +58,8 @@ if args.comm_type:
         commodity_type='precious_metals'
     elif args.indexes:
         commodity_type='indexes'
+    elif args.other:
+        commodity_type='other'
     else:
         commodity_type='indexes'
         print('Defaulted to indexes.\n', end='')

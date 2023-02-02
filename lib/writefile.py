@@ -62,7 +62,7 @@ def write_data_commodities(url, comm_type, base_folder_path, subfolder_path, csv
     # print('Commodities to scrape:',commodities)
 
     for commodity in commodities.values():
-        data_output_path= create_output_filepath(commodity, subfolder_path, base_folder_path, False, False)
+        data_output_path= create_output_filepath(commodity, subfolder_path, base_folder_path, False, True) # Merge monthly
         if is_unit_test:
             print('write_data_comm:',is_unit_test, commodity)
 
