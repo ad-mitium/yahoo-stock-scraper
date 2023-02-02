@@ -9,7 +9,7 @@ import argparse
 from lib import writefile
 from lib import version as ver
 
-version_number = (0, 3, 1)
+version_number = (0, 3, 2)
 subfolder_path = 'data/'
 data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
 
@@ -39,6 +39,6 @@ merge_file_monthly = args.mergefile_monthly
 
 base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
-output_path = writefile.create_output_filepath(alt_stock_name,merge_file,merge_file_monthly,subfolder_path,data_folder_output_base_path)
+output_path = writefile.create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
 
-data_to_file = writefile.write_data(base_url, merge_file, merge_file_monthly, output_path) 
+data_to_file = writefile.write_data(base_url, output_path, merge_file, merge_file_monthly) 

@@ -11,9 +11,12 @@ def test_path(output_folder_path):
         Path(output_folder_path).mkdir( parents=True, exist_ok=True)
         # raise SystemExit('Path to '+output_folder_path+' not found')
 
+def joinpath(rootdir, targetdir):
+    return os.path.join(os.sep, rootdir + os.sep, targetdir)
+
 
 ##### Outputting data to file #####
-def write_data(url, merge_file_test, merge_file_monthly_test, data_output_path, is_unit_test=False):
+def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, is_unit_test=False):
 
     # Get time in HH-MM-SS format
     time_data = strftime('%H:%M:%S',localtime())
@@ -46,7 +49,7 @@ def write_data(url, merge_file_test, merge_file_monthly_test, data_output_path, 
     return (data_output_path)
 
 ##### Create the output file path and filename depending on merge_file flag #####
-def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,data_subfolder_path,data_folder_base_path):
+def create_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_path,merge_file_test,merge_file_monthly_test,add_year=True):
     ##### Formatting data file path and filename #####
     # Get date in YYYY-MM-DD format
     current_date = strftime('%Y-%m-%d')
@@ -73,7 +76,7 @@ def create_output_filepath(alt_stock_id,merge_file_test,merge_file_monthly_test,
 
     test_path(joined_output_folder_path)
     # print (joined_output_folder_path)
-    joined_output = os.path.join(joined_output_folder_path,file_name)
+    joined_output = joinpath(joined_output_folder_path,file_name)
     # print(joined_output)
     return joined_output
 
@@ -90,9 +93,9 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     unit_test = True     # Disable call to scrape.py
 
-    output_path = create_output_filepath(alt_stock_name,merge_file,merge_file_monthly,subfolder_path,data_folder_output_base_path)
+    output_path = create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
 
-    write_data(base_url, merge_file, merge_file_monthly, output_path, unit_test)
+    write_data(base_url, output_path, merge_file, merge_file_monthly, unit_test)
 
     print('Data was written to',output_path)
 else:
