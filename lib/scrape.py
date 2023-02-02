@@ -20,12 +20,17 @@ def get_page(url_to_scrape, is_unit_test=False):
         'Connection'      : 'close'
     }
     if is_unit_test:
+        from pathlib import Path
+        stock='GC%3DF'
+        sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html'
+        sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html'
+        print('get_page data:',sample_data)
         print('get_page unit test:',is_unit_test)
 
     # Making a GET request
     try:
         if is_unit_test:
-            # print(is_unit_test)
+            print('try:',is_unit_test)
             if stock in url_to_scrape:
                 html_request = read_data(sample_data_single)
             else:
@@ -51,7 +56,8 @@ def get_page(url_to_scrape, is_unit_test=False):
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
- #   print(is_unit_test)
+    if is_unit_test:
+        print("bs_scraper:",is_unit_test)
     if not is_unit_test:
         sleep_time(10) # Randomly sleep to increase variability
         web_request = get_page(url_to_scrape)
@@ -75,9 +81,10 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
 
 def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
     d={}
-#   print(is_unit_test)
+    if is_unit_test:
+        print("bs_scraper_2:",is_unit_test)
+
     if not is_unit_test:
-        sleep_time(20) # Randomly sleep to increase variability
         web_request = get_page(url_to_scrape)
         # Parsing the HTML
         soup_html_output = bSoup(web_request.content, 'html.parser')
@@ -89,11 +96,14 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
 
     if "exception has occurred:" not in soup_html_output:
         # Find by id
+        if is_unit_test:
+           print('No exceptions found')
         div_ids=soup_html_output.find('div').find_all("fin-streamer")
 
         for divs in div_ids:
             if divs.has_attr('data-symbol'):
                 data_symbol=divs['data-symbol']
+                # print(data_symbol)
             if divs.has_attr('data-field'):
                 data_type=divs['data-field']
             for stock_name in stock_name_data.keys():
@@ -101,9 +111,11 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
                     if stock_name in stock_name_data.keys():
                         stock_name=stock_name_data[stock_name]
                     d[stock_name] = divs.text.strip()
-                    # print(stock_name, end=' ')
-                    # print (divs.text.strip())
-        # print(d)
+                    # if is_unit_test:
+                    #     print(stock_name, end=' ')
+                    #     print (divs.text.strip())
+        if is_unit_test:
+            print("Found:",d)
         content = d
     else:
         content = soup_html_output   # send exception as data

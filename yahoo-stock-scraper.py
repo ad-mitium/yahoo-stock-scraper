@@ -8,7 +8,6 @@
 import argparse
 from lib import writefile
 from lib import version as ver
-from lib import read_csv
 
 version_number = (0, 4, 1)
 subfolder_path = 'data/'
@@ -42,16 +41,16 @@ url_stock_name = args.url_div_id_name
 alt_stock_name = args.alt_stock_id_name
 merge_file = args.mergefile_large
 merge_file_monthly = args.mergefile_monthly
-disable_monthly_grouping=True
 
 base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 output_path = writefile.create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
 
+# Read in commodity types for scraping 
 if args.comm_type:
-    use_year=False
-    comm_folder_path=writefile.create_output_filepath(alt_stock_name,config_folder_path,data_folder_output_base_path,merge_file,disable_monthly_grouping,use_year)
-    print('Commdities enabled\n', end='')
+    commodities_url='https://finance.yahoo.com/commodities'
+
+    # print('Commdities enabled\n', end='')
     if args.fuels:
         commodity_type='fuels'
     elif args.precious_metals:
@@ -62,7 +61,6 @@ if args.comm_type:
         commodity_type='indexes'
         print('Defaulted to indexes.\n', end='')
 
-    stocks=read_csv.csv_reader(comm_folder_path,commodity_type)
-    print(stocks)
-
-data_to_file = writefile.write_data(base_url, output_path, merge_file, merge_file_monthly) 
+    writefile.write_data_commodities(commodities_url,commodity_type, data_folder_output_base_path, subfolder_path, config_folder_path)
+else:
+    data_to_file = writefile.write_data(base_url, output_path, merge_file, merge_file_monthly) 
