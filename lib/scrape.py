@@ -47,11 +47,9 @@ def get_page(url_to_scrape, is_unit_test=False):
         if is_unit_test:
             print('A timeout error has occurred getting page with error message: \n',e_t)
         return ("A timeout exception has occurred:" + repr(e_t))
-#        raise SystemExit(e)
     except requests.exceptions.RequestException as e:
         if is_unit_test:
             print('An error has occurred getting page with error message: \n', e)
-#        raise SystemExit(e)
         return ("An exception has occurred: \n" + repr(e))
 
 ##### Scraping info #####
@@ -84,15 +82,13 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
     if is_unit_test:
         print("bs_scraper_2:",is_unit_test)
 
+    # Parsing the HTML
     if not is_unit_test:
         web_request = get_page(url_to_scrape)
-        # Parsing the HTML
         soup_html_output = bSoup(web_request.content, 'html.parser')
     else:
         web_request = get_page(url_to_scrape,is_unit_test)
-        # Parsing the HTML
         soup_html_output = bSoup(web_request, 'html.parser')
-
 
     if "exception has occurred:" not in soup_html_output:
         # Find by id
@@ -131,8 +127,9 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG' }
 
     # You must do this unit test from the base folder path (<Location this code repo is stored> / folder_output_base_path)
-    sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html'
-    sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html'
+    # Sample data is hosted in another github repo and must be placed in the main folder of this repo
+    sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html' # This is only used for unit test, so Path.absolute shouldn't be an issue
+    sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html' 
 
     base_url = 'https://finance.yahoo.com/quote/'+str(stock)
     base_url_com = 'https://finance.yahoo.com/commodities'
