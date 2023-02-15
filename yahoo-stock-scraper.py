@@ -9,7 +9,9 @@ import argparse
 from lib import writefile
 from lib import version as ver
 
+
 version_number = (0, 4, 1)
+
 subfolder_path = 'data/'
 config_folder_path = 'csv_config_files/'
 data_folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path: ~/Documents/Code
