@@ -19,6 +19,16 @@ will concatenate data into one monthly file, using the stock name identifier (se
 **```-v```**
 shows versioning info.  This does not require any other info and will ignore all other flags.
 
+### Commodities scraping
+
+**```-c```**
+will scrape data from a CSV file in the ```csv_config_files``` folder, with the following flags to determine what will be scraped. You will still need to supply a stock name and stock id, but that stock will be ignored with this flag.
+
+    -i      Scrape market indexes
+    -f      Scrape fuel futures
+    -p      Scrape precious metal futures
+    -o      Scrape user supplied list of commodities
+
 ### **Code execution as follows:**
 
     python3 yahoo-stock-scrapyer.py {flag} [Yahoo's URL identifier] [Stock identifier] 
@@ -99,7 +109,7 @@ For Windows:
 * ~~Refactor into modular format~~ (completed)
 * ~~Work out windows folder output path~~ (completed)
 * ~~Create a second scraper for commodities that only makes one web request~~ (completed)
-* Take commodities data and output it to individual files for each commodity
-* Add flag for commodities scraping
+* ~~Take commodities data and output it to individual files for each commodity~~
+* ~~Add flag for commodities scraping~~
 * ~~Folder management needs testing for creating non-existent folders~~ (completed)
 * Add plotting feature. Or create a new project for it
