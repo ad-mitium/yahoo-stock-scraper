@@ -74,10 +74,10 @@ def write_data_commodities(url, comm_type, base_folder_path, subfolder_path, csv
             if (not is_unit_test):    # Actually attempt to scrape
                 web_content = scraper_comm (url,commodities)
                 if commodity in web_content:
-                    data_outfile.write(f'{current_date}_{time_data}: {web_content[commodity]}') 
+                    data_outfile.write(f'{current_date}_{time_data}: {web_content[commodity]}\n') 
             else:
-                data_outfile.write(f'Unit test at {time_data} on {current_date}')
-            data_outfile.write('\n')
+                data_outfile.write(f'Unit test at {time_data} on {current_date}\n')
+            # data_outfile.write('\n')
         except FileNotFoundError as fnf_error:
             print(fnf_error)
         except IOError:
