@@ -109,7 +109,8 @@ For Windows:
 * ~~Refactor into modular format~~ (completed)
 * ~~Work out windows folder output path~~ (completed)
 * ~~Create a second scraper for commodities that only makes one web request~~ (completed)
-* ~~Take commodities data and output it to individual files for each commodity~~
-* ~~Add flag for commodities scraping~~
+* ~~Take commodities data and output it to individual files for each commodity~~ (completed)
+* ~~Add flag for commodities scraping~~ (completed)
 * ~~Folder management needs testing for creating non-existent folders~~ (completed)
+* Add guards against -i,-o,-f,-p flags when not using -c flag
 * Add plotting feature. Or create a new project for it
