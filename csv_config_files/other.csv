@@ -1,2 +1,2 @@
-"NG=F","CL=F","GC=F","^DJI","RB=F"
-"NG-hourly","Oil-hourly","Gold-hourly","DJIA","Gas-hourly"
+"NG=F","CL=F","GC=F","^DJI","RB=F","ZN=F","^TNX"
+"NG-hourly","Oil-hourly","Gold-hourly","DJIA-hourly","Gas-hourly","US-10yr-TNote-hourly","US-10yr-Bond" 
