@@ -124,7 +124,7 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     folder_output_base_path = 'yahoo-stock-scraper' # folder to put data folder into inside base_folder_path
     stock='GC%3DF'
     # stock='NG%3DF'
-    stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG' }
+    stock_alt_names={'GC=F':'Gold', 'CL=F':'Crude', '^DJI':'DJIA', '^IXIC':'NASDAQ', 'NG=F':'NG', 'RB=F':'Gas' }
 
     # You must do this unit test from the base folder path (<Location this code repo is stored> / folder_output_base_path)
     # Sample data is hosted in another github repo and must be placed in the main folder of this repo
