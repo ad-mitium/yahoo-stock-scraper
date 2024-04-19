@@ -70,7 +70,8 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         # Find by id
         div_id = soup_html_output.find('div', id= 'quote-header-info')
         # Find by class
-        datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
+        datafield = div_id.find('fin-streamer', class_= 'livePrice svelte-mgkamr')
+        # datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
         # Get desired content
         content = datafield.text.strip()
     else:
