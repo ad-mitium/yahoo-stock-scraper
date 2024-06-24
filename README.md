@@ -93,6 +93,10 @@ cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16
 
 **For testing purposes only, DO NOT ABUSE Yahoo's TOS!**
 
+## Code flow path
+
+[<center> <img src="./images/bs_scraper_flow.png" width="500" alt="Code Flow Path"></center>](./images/bs_scraper_flow.png)
+
 ## Issues compiling due to importing BeautifulSoup
 
 Issues compiling due to missing bs4 import
