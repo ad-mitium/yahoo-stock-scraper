@@ -68,9 +68,17 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
 
     if "exception has occurred:" not in soup_html_output:
         # Find by id
+        if is_unit_test and soup_html_output.find('div', id= 'svelte'):
+            print('svelte div found')
+        else:
+            print('svelte div not found')
         div_id = soup_html_output.find('div', id= 'svelte')
         # div_id = soup_html_output.find('div', id= 'quote-header-info')
         # Find by class
+        if is_unit_test and div_id.find('fin-streamer', class_= 'livePrice'):
+            print('liveprice class found')
+        else:
+            print('liveprice not class found')            
         datafield = div_id.find('fin-streamer', class_= 'livePrice')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice yf-mgkamr')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice svelte-mgkamr')
