@@ -71,7 +71,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         div_id = soup_html_output.find('div', id= 'svelte')
         # div_id = soup_html_output.find('div', id= 'quote-header-info')
         # Find by class
-        datafield = div_id.find('fin-streamer', class_= 'livePrice yf-1i5aalm')
+        datafield = div_id.find('fin-streamer', class_= 'livePrice')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice yf-mgkamr')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice svelte-mgkamr')
         # datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
