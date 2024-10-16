@@ -106,12 +106,20 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
         # Find by id
         if is_unit_test:
            print('No exceptions found')
-        div_ids=soup_html_output.find('div').find_all("fin-streamer")
+        
+        div_id = soup_html_output.find('div', id= 'svelte')
+        if is_unit_test:
+            print (div_id)
+
+        div_ids=div_id.find_all("fin-streamer")
+        if is_unit_test:
+           print (div_ids)
 
         for divs in div_ids:
             if divs.has_attr('data-symbol'):
                 data_symbol=divs['data-symbol']
-                # print(data_symbol)
+                # if is_unit_test:
+                #     print(data_symbol)
             if divs.has_attr('data-field'):
                 data_type=divs['data-field']
             for stock_name in stock_name_data.keys():
@@ -119,9 +127,9 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
                     if stock_name in stock_name_data.keys():
                         stock_name=stock_name_data[stock_name]
                     d[stock_name] = divs.text.strip()
-                    # if is_unit_test:
-                    #     print(stock_name, end=' ')
-                    #     print (divs.text.strip())
+                    if is_unit_test:
+                        print(stock_name, end=' = ')
+                        print (divs.text.strip())
         if is_unit_test:
             print("Found:",d)
         content = d
