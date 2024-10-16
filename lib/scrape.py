@@ -78,7 +78,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         if is_unit_test and div_id.find('fin-streamer', class_= 'livePrice'):
             print('liveprice class found')
         else:
-            print('liveprice not class found')            
+            print('liveprice class not found')            
         datafield = div_id.find('fin-streamer', class_= 'livePrice')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice yf-mgkamr')
         # datafield = div_id.find('fin-streamer', class_= 'livePrice svelte-mgkamr')
