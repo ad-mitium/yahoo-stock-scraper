@@ -70,19 +70,15 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         # Find by id
         if is_unit_test and soup_html_output.find('div', id= 'svelte'):
             print('svelte div found')
-        else:
+        elif is_unit_test:
             print('svelte div not found')
         div_id = soup_html_output.find('div', id= 'svelte')
-        # div_id = soup_html_output.find('div', id= 'quote-header-info')
         # Find by class
         if is_unit_test and div_id.find('fin-streamer', class_= 'livePrice'):
             print('liveprice class found')
-        else:
-            print('liveprice class not found')            
+        elif is_unit_test:
+            print('liveprice class not found')
         datafield = div_id.find('fin-streamer', class_= 'livePrice')
-        # datafield = div_id.find('fin-streamer', class_= 'livePrice yf-mgkamr')
-        # datafield = div_id.find('fin-streamer', class_= 'livePrice svelte-mgkamr')
-        # datafield = div_id.find('fin-streamer', class_= 'Fw(b) Fz(36px) Mb(-4px) D(ib)')
         # Get desired content
         content = datafield.text.strip()
     else:
@@ -106,7 +102,7 @@ def bs_scraper_2(url_to_scrape, stock_name_data, is_unit_test=False):
         # Find by id
         if is_unit_test:
            print('No exceptions found')
-        
+
         div_id = soup_html_output.find('div', id= 'svelte')
         if is_unit_test:
             print (div_id)
@@ -149,7 +145,7 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
     # You must do this unit test from the base folder path (<Location this code repo is stored> / folder_output_base_path)
     # Sample data is hosted in another github repo and must be placed in the main folder of this repo
     sample_data=str(Path().absolute())+'/sample_data/yahoo-sample.html' # This is only used for unit test, so Path.absolute shouldn't be an issue
-    sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html' 
+    sample_data_single=str(Path().absolute())+'/sample_data/yahoo-sample-single.html'
 
     base_url = 'https://finance.yahoo.com/quote/'+str(stock)
     base_url_com = 'https://finance.yahoo.com/commodities'
