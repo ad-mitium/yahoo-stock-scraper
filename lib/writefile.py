@@ -2,18 +2,6 @@ import os
 from pathlib import Path
 from time import localtime, strftime
 
-def test_path(output_folder_path):
-    if os.path.exists(output_folder_path):
-        # print(os.path.dirname(output_folder_path))
-        pass
-    else:
-#        print('Failed to find path to data '+ os.path(data_output_path))
-        Path(output_folder_path).mkdir( parents=True, exist_ok=True)
-        # raise SystemExit('Path to '+output_folder_path+' not found')
-
-def joinpath(rootdir, targetdir):
-    return os.path.join(os.sep, rootdir + os.sep, targetdir)
-
 
 ##### Outputting data to file #####
 def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, is_unit_test=False):
@@ -135,6 +123,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     # from scrape import bs_scraper_2 as scraper_comm
     # from random_sleep import sleep_time
     from read_csv import csv_reader 
+    import common
 
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     commodities_url='https://finance.yahoo.com/commodities'
@@ -161,3 +150,5 @@ else:
     from lib.scrape import bs_scraper as scraper # fixes relative path issue when not testing
     from lib.scrape import bs_scraper_2 as scraper_comm 
     from lib.read_csv import csv_reader
+    from lib.common import test_path
+    from lib.common import joinpath

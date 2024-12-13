@@ -85,6 +85,10 @@ The resulting output directory path is:
 or
 ```C:\\Users\\{USER}\\Documents\\Code\\yahoo-stock-scraper\\data```
 
+### Error logging
+
+Added in version ```0.4.3```, if errors in scraping data are encounted, the raw data will be recorded in the data folder under the year and month it was run and the file will be named as the date it occurred. Time of occurance will be recorded with the raw data. A prefix can be used, which is located at the top of ```scrape.py```.
+
 ### **Creating a cron job to automate scraper**
 
 cron job setting for checking daily (M-F) at 9:00, 9:30, 12:00, 12:30, 16:00, 16:30:
@@ -116,5 +120,6 @@ For Windows:
 * ~~Take commodities data and output it to individual files for each commodity~~ (completed)
 * ~~Add flag for commodities scraping~~ (completed)
 * ~~Folder management needs testing for creating non-existent folders~~ (completed)
+* Play audio to alert on error which could possibly be very intrusive
 * Add guards against -i,-o,-f,-p flags when not using -c flag
 * Add plotting feature. Or create a new project for it

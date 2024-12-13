@@ -10,7 +10,7 @@ from lib import writefile
 from lib import version as ver
 
 
-version_number = (0, 4, 2)
+version_number = (0, 4, 3)
 
 subfolder_path = 'data/'
 config_folder_path = 'csv_config_files/'
