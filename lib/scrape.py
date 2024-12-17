@@ -89,6 +89,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
                 div_id = soup_html_output.find('div', id= 'svelte')
                 fin_streamer = div_id.find('fin-streamer', class_= 'livePrice') 
                 retry_count += 1
+                sleep_time(3) # Randomly sleep to increase variability because Yahoo is actively blocking repeated requests
             else:
                 break
             
