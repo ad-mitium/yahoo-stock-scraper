@@ -61,7 +61,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
     if is_unit_test:
         print("bs_scraper:",is_unit_test)
     if not is_unit_test:
-        sleep_time(10) # Randomly sleep to increase variability
+        sleep_time(5) # Randomly sleep to increase variability
         web_request = get_page(url_to_scrape)
         # Parsing the HTML
         soup_html_output = bSoup(web_request.content, 'html.parser')
