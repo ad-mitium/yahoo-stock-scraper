@@ -14,10 +14,10 @@ def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, 
 
     # Open output file for writing
     if os.path.exists(os.path.dirname(data_output_path)):
-#        print(os.path.dirname(data_output_path))
+        #print(os.path.dirname(data_output_path),data_output_path)
         data_outfile = open( data_output_path , 'a')
     else:
-#        print('Failed to find path to data '+ os.path.dirname(data_output_path))
+        #print('Failed to find path to data '+ os.path.dirname(data_output_path))
         raise SystemExit('Path to '+data_output_path+' not found')
 
     ##### Get data from web #####
@@ -51,7 +51,7 @@ def write_data_commodities(url, comm_type, base_folder_path, subfolder_path, csv
     # print('Commodities to scrape:',commodities)
 
     for commodity in commodities.values():
-        data_output_path= create_output_filepath(commodity, subfolder_path, base_folder_path, False, True) # Merge monthly
+        data_output_path= create_stock_output_filepath(commodity, subfolder_path, base_folder_path, False, True) # Merge monthly
         if is_unit_test:
             print('write_data_comm:',is_unit_test, commodity)
 
@@ -75,46 +75,6 @@ def write_data_commodities(url, comm_type, base_folder_path, subfolder_path, csv
 
     # return (data_output_path)
 
-##### Create the output file path and filename depending on merge_file flag #####
-def create_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_path,merge_file_test,merge_file_monthly_test,add_year=True,use_filename=True):
-    ##### Formatting data file path and filename #####
-    # Get date in YYYY-MM-DD format
-    current_date = strftime('%Y-%m-%d')
-    month_date = strftime('%b-%Y')
-    year = strftime('%Y',localtime())
-    month = strftime('%B',localtime())
-
-    # Craft base folder path, data path, data subfolder and filename
-    base_folder_path = Path.home() / 'Documents'/ 'Code'  # python scraper base path
-
-    # Check if merge_file is true, then add current date to filename
-    if use_filename:
-        if merge_file_monthly_test:
-            file_name = alt_stock_id+'-'+month_date+'.csv'
-        elif merge_file_test:
-            file_name = alt_stock_id+'.csv'
-        else:
-            file_name = alt_stock_id+'_'+current_date+'.csv'
-            # Merge output path together, sort in folder by year and month
-            joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month)
-    else:
-        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year)
-
-    if any([merge_file_monthly_test, merge_file_test]):
-        # Merge output path together, sort in folder by year
-        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year)
-
-    if not add_year:
-        joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path) # no year
-
-    test_path(joined_output_folder_path)
-    # print (joined_output_folder_path)
-    if not use_filename:
-        joined_output = joined_output_folder_path # no file_name
-    else:
-        joined_output = joinpath(joined_output_folder_path,file_name)
-    # print(joined_output)
-    return joined_output
 
 
 ##### For Unit testing #####
@@ -123,7 +83,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     # from scrape import bs_scraper_2 as scraper_comm
     # from random_sleep import sleep_time
     from read_csv import csv_reader 
-    import common
+    from common import create_stock_output_filepath
 
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     commodities_url='https://finance.yahoo.com/commodities'
@@ -140,7 +100,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     stock_type='fuels'      # change as needed
     # stock_list=csv_reader(csv_base_folder_path, stock_type) 
 
-    output_path = create_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly,use_year,use_file_name)
+    output_path = create_stock_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly,use_year,use_file_name)
 
     write_data(base_url, output_path, merge_file, merge_file_monthly, unit_test)
     write_data_commodities(commodities_url, stock_type, data_folder_output_base_path, subfolder_path, csv_list_folder, unit_test)
@@ -150,5 +110,4 @@ else:
     from lib.scrape import bs_scraper as scraper # fixes relative path issue when not testing
     from lib.scrape import bs_scraper_2 as scraper_comm 
     from lib.read_csv import csv_reader
-    from lib.common import test_path
-    from lib.common import joinpath
+    from lib.common import create_stock_output_filepath

@@ -1,11 +1,18 @@
 import requests
 from bs4 import BeautifulSoup as bSoup
+from time import strftime,localtime
 
 error_filename_prefix = 'error_message_logging'
 app_name = 'yahoo-stock-scraper'
 subfolder_path = 'data'     # Folder name to store created debug file
 
 # Issues with BeautifulSoup: apt install python3-bs4
+
+##############################################################################
+#####                                                                    #####
+#####              DO NOT ALTER VARIABLES BEYOND THIS POINT              #####
+#####                                                                    #####
+##############################################################################
 
 def read_data(filename):
     data_infile = open( filename , 'r')
@@ -82,7 +89,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         retry_count=0
         while retry_count < 10:
             if not hasattr(fin_streamer,'data-field'):  # Try a second time
-                print ("Trying again")
+                print (strftime('%H:%M:%S',localtime()),"Trying again (",retry_count,") url=",url_to_scrape[-5:])
                 web_request = get_page(url_to_scrape)
                 # Parsing the HTML
                 soup_html_output = bSoup(web_request.content, 'html.parser')
@@ -241,7 +248,7 @@ if (__name__ == '__main__'):    # for unit testing, default to gold as url_stock
 else:
     from lib.random_sleep import sleep_time
     #from lib.play_audio import play_audio as play
-    from lib.write_error import create_output_filepath 
+    from lib.common import create_output_filepath 
     from lib.write_error import write_error_data
     
-    print()
+    #print()
