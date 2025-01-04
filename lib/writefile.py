@@ -13,7 +13,7 @@ def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, 
     current_date = strftime('%Y-%m-%d')
 
     # Test for year turn over
-    if strftime('%m-%d') == '01-04':
+    if strftime('%m-%d') == '01-01':
         # print("Determine if new year folder exists.")
         test_path(data_output_path)
 
