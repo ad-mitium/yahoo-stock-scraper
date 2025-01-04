@@ -12,6 +12,11 @@ def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, 
     # Get date in YYYY-MM-DD format
     current_date = strftime('%Y-%m-%d')
 
+    # Test for year turn over
+    if strftime('%m-%d') == '01-04':
+        # print("Determine if new year folder exists.")
+        test_path(data_output_path)
+
     # Open output file for writing
     if os.path.exists(os.path.dirname(data_output_path)):
         #print(os.path.dirname(data_output_path),data_output_path)
@@ -83,7 +88,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     # from scrape import bs_scraper_2 as scraper_comm
     # from random_sleep import sleep_time
     from read_csv import csv_reader 
-    from common import create_stock_output_filepath
+    from common import create_stock_output_filepath, test_path
 
     base_url = 'https://finance.yahoo.com/quote/GC%3DF'
     commodities_url='https://finance.yahoo.com/commodities'
@@ -110,4 +115,4 @@ else:
     from lib.scrape import bs_scraper as scraper # fixes relative path issue when not testing
     from lib.scrape import bs_scraper_2 as scraper_comm 
     from lib.read_csv import csv_reader
-    from lib.common import create_stock_output_filepath
+    from lib.common import create_stock_output_filepath, test_path
