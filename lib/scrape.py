@@ -86,8 +86,8 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         div_id = soup_html_output.find('div', id= 'svelte')
         # Find by class
         fin_streamer = div_id.find('fin-streamer', class_= 'livePrice') 
-        retry_count=0
-        while retry_count < 10:
+        retry_count=1
+        while retry_count < 11:
             if not hasattr(fin_streamer,'data-field'):  # Try a second time
                 print (strftime('%H:%M:%S',localtime()),"Trying again (",retry_count,") url=",url_to_scrape[-5:])
                 web_request = get_page(url_to_scrape)
