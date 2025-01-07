@@ -1,2 +1,2 @@
-"NG=F","CL=F","GC=F","^DJI","^FTSE","RB=F",HO=F,"ZN=F","^TNX"
-"NG-hourly","Oil-hourly","Gold-hourly","DJIA-hourly","FTSE-hourly","Gas-hourly","Heating-Oil","US-10yr-TNote-hourly","US-10yr-Bond" 
+"NG=F","CL=F","GC=F","^DJI","^GSPC","^FTSE","RB=F",HO=F,"ZN=F","^TNX"
+"NG-hourly","Oil-hourly","Gold-hourly","DJIA-hourly","SP-500-hourly","FTSE-hourly","Gas-hourly","Heating-Oil","US-10yr-TNote-hourly","US-10yr-Bond" 
