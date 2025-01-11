@@ -15,7 +15,7 @@ def write_data(url, data_output_path, merge_file_test, merge_file_monthly_test, 
     # Test for year turn over
     if strftime('%m-%d') == '01-01':
         # print("Determine if new year folder exists.")
-        test_path(data_output_path)
+        test_path(os.path.dirname(data_output_path))
 
     # Open output file for writing
     if os.path.exists(os.path.dirname(data_output_path)):
