@@ -65,6 +65,12 @@ def get_page(url_to_scrape, is_unit_test=False):
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
+
+    day_of_week = strftime('%a',localtime())
+
+    if 'Sat' or 'Sun' in day_of_week:
+        is_unit_test = True
+
     if is_unit_test:
         print("bs_scraper:",is_unit_test)
     if not is_unit_test:
