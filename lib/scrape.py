@@ -67,9 +67,11 @@ def get_page(url_to_scrape, is_unit_test=False):
 def bs_scraper(url_to_scrape, is_unit_test=False):
 
     day_of_week = strftime('%a',localtime())
+    # print(day_of_week)
 
-    if 'Sat' or 'Sun' in day_of_week:
+    if ('Sat' or 'Sun') in day_of_week:
         is_unit_test = True
+        # print("Day of week triggered on:",day_of_week)
 
     if is_unit_test:
         print("bs_scraper:",is_unit_test)
