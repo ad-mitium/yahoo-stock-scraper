@@ -87,13 +87,14 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
 
     if "exception has occurred:" not in soup_html_output:
         # Find by id
-        if is_unit_test and soup_html_output.find('div', id= 'svelte'):
-            print('    svelte div found')
-        elif is_unit_test:
-            print('    svelte div not found')
+        # if is_unit_test and soup_html_output.find('div', id= 'svelte'):
+        #     print('    svelte div found')
+        # elif is_unit_test:
+        #     print('    svelte div not found')
         div_id = soup_html_output.find('div', id= 'svelte')
+
         # Find by class
-        fin_streamer = div_id.find('fin-streamer', class_= 'livePrice') 
+        fin_streamer = div_id.find('fin-streamer', class_= 'price')     # Are we having fun yet, Yahoo? 
         retry_count=1
         while retry_count < 11:
             if not hasattr(fin_streamer,'data-field'):  # Try a second time
@@ -102,7 +103,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
                 # Parsing the HTML
                 soup_html_output = bSoup(web_request.content, 'html.parser')
                 div_id = soup_html_output.find('div', id= 'svelte')
-                fin_streamer = div_id.find('fin-streamer', class_= 'livePrice') 
+                fin_streamer = div_id.find('div', class_= 'price')      
                 retry_count += 1
                 sleep_time(3) # Randomly sleep to increase variability because Yahoo is actively blocking repeated requests
             else:
@@ -110,25 +111,13 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
             
         # Data is found, time to extract data
         if hasattr(fin_streamer,'data-field'): 
-        #if fin_streamer.has_attr('data-field'): 
-            if fin_streamer['data-field'] == 'regularMarketPrice':  # Check if data exists
-                datafield = fin_streamer
-                if is_unit_test:
-                    print('regularMarketPrice found')
-                    print('    fin-streamer data: ',fin_streamer)     # Dump div data for assessment
-                #write_error_data(create_output_filepath(subfolder_path,app_name,error_filename_prefix,True,True),fin_streamer)
-            else:
-                datafield = fin_streamer
-                if is_unit_test:
-                    print('regularMarketPrice NOT found')
-                    print('    fin-streamer data: ',fin_streamer)     # Dump div data for assessment
-                write_error_data(create_output_filepath(subfolder_path,app_name,error_filename_prefix,True,True),div_id.find('fin-streamer'))
+            datafield = soup_html_output.find('div',class_= 'price')        # Streamline search for price field
 
             # Get desired content
             try:
                 if is_unit_test:
                     print('    try text strip')
-                content = datafield.text.strip()
+                content = datafield.find('span').text.strip()
             except AttributeError:
                 
                 content = "No Data Acquired"
