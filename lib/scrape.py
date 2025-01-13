@@ -94,7 +94,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         div_id = soup_html_output.find('div', id= 'svelte')
 
         # Find by class
-        fin_streamer = div_id.find('fin-streamer', class_= 'price')     # Are we having fun yet, Yahoo? 
+        fin_streamer = div_id.find('div', class_= 'price')     # Are we having fun yet, Yahoo? 
         retry_count=1
         while retry_count < 11:
             if not hasattr(fin_streamer,'data-field'):  # Try a second time
