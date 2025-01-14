@@ -6,6 +6,13 @@ error_filename_prefix = 'error_message_logging'
 app_name = 'yahoo-stock-scraper'
 subfolder_path = 'data'     # Folder name to store created debug file
 
+# Reduced searching through the code to adjust for Yahoo's regular "fixes" to their web data
+yahoo_class_name = 'price'          # div class name closest to data we want
+yahoo_data_field_name = 'span'      # Closest html tag to data we want
+
+yahoo_comm_class_name = ''          # Not in use, since the page source isn't being modified constantly
+yahoo_comm_data_field_name = ''     # Not in use, since the page source isn't being modified constantly
+
 # Issues with BeautifulSoup: apt install python3-bs4
 
 ##############################################################################
@@ -96,22 +103,22 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         # Find by class
         fin_streamer = div_id.find('div', class_= 'price')     # Are we having fun yet, Yahoo? 
         retry_count=1
-        while retry_count < 11:
+        while retry_count < 11:         
             if not hasattr(fin_streamer,'data-field'):  # Try a second time
                 print (strftime('%H:%M:%S',localtime()),"Trying again (",retry_count,") url=",url_to_scrape[-5:])
                 web_request = get_page(url_to_scrape)
                 # Parsing the HTML
                 soup_html_output = bSoup(web_request.content, 'html.parser')
                 div_id = soup_html_output.find('div', id= 'svelte')
-                fin_streamer = div_id.find('div', class_= 'price')      
+                fin_streamer = div_id.find('div', class_= yahoo_class_name)      
                 retry_count += 1
                 sleep_time(3) # Randomly sleep to increase variability because Yahoo is actively blocking repeated requests
             else:
                 break
             
         # Data is found, time to extract data
-        if hasattr(fin_streamer,'data-field'): 
-            datafield = soup_html_output.find('div',class_= 'price')        # Streamline search for price field
+        if hasattr(fin_streamer,'data-field'):      # This might be unnecessary after clean up, testing needed
+            datafield = soup_html_output.find('div',class_= yahoo_class_name)        # Streamline search for price field
 
             # Get desired content
             try:
