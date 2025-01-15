@@ -115,7 +115,12 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
                 sleep_time(3) # Randomly sleep to increase variability because Yahoo is actively blocking repeated requests
             else:
                 break
-            
+        
+        # Record retry count for review
+        if retry_count > 1:
+            record_retry_count = f'Retry count: {retry_count} Stock url: {url_to_scrape[-5:]}'
+            write_error_data(create_output_filepath(subfolder_path,app_name,error_filename_prefix,True,True),record_retry_count)
+
         # Data is found, time to extract data
         if hasattr(fin_streamer,'data-field'):      # This might be unnecessary after clean up, testing needed
             datafield = soup_html_output.find('div',class_= yahoo_class_name)        # Streamline search for price field
