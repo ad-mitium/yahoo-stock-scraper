@@ -24,6 +24,7 @@ shows versioning info.  This does not require any other info and will ignore all
 **```-c```**
 will scrape data from a CSV file in the ```csv_config_files``` folder, with the following flags to determine what will be scraped. You will still need to supply a stock name and stock id, but that stock will be ignored with this flag.
 
+    -b      Scrape US treasury notes
     -i      Scrape market indexes
     -f      Scrape fuel futures
     -p      Scrape precious metal futures

@@ -35,6 +35,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter, 
 #parser.add_argument("alt_name", nargs='?', default = 'Gold', help='''Enter common name for stock''')
 parser.add_argument('url_div_id_name', help='''Enter stock name for URL''')
 parser.add_argument('alt_stock_id_name', help='''Enter common name for stock''')
+parser.add_argument('-b','--bonds', action='store_true', default = False, help='''select bonds''') 
 parser.add_argument('-c','--comm-type', action='store_true', default = False, help='''enable commodities scraping''') 
 parser.add_argument('-f','--fuels', action='store_true', default = False, help='''select fuel commodities''') 
 parser.add_argument('-i','--indexes', action='store_true', default = False, help='''select indexes''') 
@@ -57,17 +58,23 @@ output_path = common.create_stock_output_filepath(alt_stock_name,subfolder_path,
 
 # Read in commodity types for scraping 
 if args.comm_type:
-    commodities_url='https://finance.yahoo.com/commodities'
 
     # print('Commdities enabled\n', end='')
     if args.fuels:
         commodity_type='fuels'
+        commodities_url='https://finance.yahoo.com/commodities'
     elif args.precious_metals:
         commodity_type='precious_metals'
+        commodities_url='https://finance.yahoo.com/commodities'
     elif args.indexes:
         commodity_type='indexes'
+        commodities_url = 'https://finance.yahoo.com/markets/world-indices/'
     elif args.other:
         commodity_type='other'
+        commodities_url='https://finance.yahoo.com/commodities'
+    elif args.bonds:
+        commodity_type='bonds'
+        commodities_url = 'https://finance.yahoo.com/markets/bonds/'
     else:
         commodity_type='indexes'
         print('Defaulted to indexes.\n', end='')
