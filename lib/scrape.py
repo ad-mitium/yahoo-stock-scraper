@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bSoup
 from time import strftime,localtime
 
-error_filename_prefix = 'error_message_logging'
+error_filename_prefix = 'yahoo_error_message_logging'
 app_name = 'yahoo-stock-scraper'
 subfolder_path = 'data'     # Folder name to store created debug file
 
