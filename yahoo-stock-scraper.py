@@ -16,7 +16,7 @@ from lib import common
 #####                                                                    #####
 ##############################################################################
 
-version_number = (0, 4, 4)
+version_number = (0, 4, 5)
 
 subfolder_path = 'data/'
 config_folder_path = 'csv_config_files/'
