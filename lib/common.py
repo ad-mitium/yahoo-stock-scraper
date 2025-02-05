@@ -18,7 +18,7 @@ def joinpath(rootdir, targetdir):
 
 
 ###### Create the output file path and filename only #####
-def create_output_filepath(data_subfolder_path,data_folder_base_path,filename,add_year=True,use_filename=True,is_unit_test=False):
+def create_output_filepath(data_subfolder_path,data_folder_base_path,filename_prefix,add_year=True,use_filename=True,is_unit_test=False):
     ##### Formatting data file path and filename #####
     # Get date in YYYY-MM-DD format
     current_date = strftime('%Y-%m-%d')
@@ -30,7 +30,7 @@ def create_output_filepath(data_subfolder_path,data_folder_base_path,filename,ad
 
     # Check if merge_file is true, then add current date to filename
     if use_filename:
-        file_name = filename+'_'+current_date+'.csv'
+        file_name = filename_prefix+'_'+current_date+'.csv'
 
         # Merge output path together, sort in folder by year and month
         joined_output_folder_path = os.path.join(base_folder_path,data_folder_base_path,data_subfolder_path,year,month)
@@ -94,6 +94,6 @@ def create_stock_output_filepath(alt_stock_id,data_subfolder_path,data_folder_ba
         #print (joined_output_folder_path)
 
     joined_output = joined_output_folder_path 
-    # print(joined_output)
+    # print(joined_output,file_name)
     return joined_output,file_name
 
