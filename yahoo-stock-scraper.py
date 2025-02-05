@@ -55,7 +55,7 @@ merge_file_monthly = args.mergefile_monthly
 base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
 output_folder_path,file_name = common.create_stock_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
-output_path=output_folder_path+'/'+file_name
+output_path=output_folder_path+'/'+file_name    # Merge returned output path and filename to pass on to other functions
 
 # Read in commodity types for scraping 
 if args.comm_type:

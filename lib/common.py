@@ -55,6 +55,7 @@ def create_output_filepath(data_subfolder_path,data_folder_base_path,filename_pr
     return joined_output
 
 ###### Create the output file path and using stock name as filename depending on merge_file flag #####
+######    Folder validation is done on joined_output_folder_path, return folder and filename     #####
 def create_stock_output_filepath(alt_stock_id,data_subfolder_path,data_folder_base_path,merge_file_test,merge_file_monthly_test,add_year=True,use_filename=True):
     ##### Formatting data file path and filename #####
     # Get date in YYYY-MM-DD format

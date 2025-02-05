@@ -107,7 +107,7 @@ if (__name__ == '__main__'):    # default to gold as url and stock_name
     # stock_list=csv_reader(csv_base_folder_path, stock_type) 
 
     output_folder_path,file_name = create_stock_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly,use_year,use_file_name)
-    output_path=output_folder_path+'/'+file_name
+    output_path=output_folder_path+'/'+file_name    # Merge returned output path and filename to pass on to other functions
 
     write_data(base_url, output_path, merge_file, merge_file_monthly, unit_test)
     write_data_commodities(commodities_url, stock_type, data_folder_output_base_path, subfolder_path, csv_list_folder, unit_test)
