@@ -9,7 +9,7 @@ def test_path(output_folder_path):
         # print(os.path.dirname(output_folder_path))
         pass
     else:
-        print('Failed to find path to data '+ os.path(output_folder_path),'\n    Creating missing folders')
+        print('Failed to find path to data ', os.path(output_folder_path),'\n    Creating missing folders')
         Path(output_folder_path).mkdir( parents=True, exist_ok=True)
         # raise SystemExit('Path to '+output_folder_path+' not found')
 
@@ -62,6 +62,7 @@ def create_stock_output_filepath(alt_stock_id,data_subfolder_path,data_folder_ba
     month_date = strftime('%b-%Y')
     year = strftime('%Y',localtime())
     month = strftime('%B',localtime())
+    file_name=''        # For case where no file name is needed
 
     # Craft base folder path, data path, data subfolder and filename
     base_folder_path = Path.home() / 'Documents'/ 'Code'  # python scraper base path
@@ -92,10 +93,7 @@ def create_stock_output_filepath(alt_stock_id,data_subfolder_path,data_folder_ba
     #if is_unit_test: 
         #print (joined_output_folder_path)
 
-    if not use_filename:
-        joined_output = joined_output_folder_path # no file_name
-    else:
-        joined_output = joinpath(joined_output_folder_path,file_name)
+    joined_output = joined_output_folder_path 
     # print(joined_output)
-    return joined_output
+    return joined_output,file_name
 

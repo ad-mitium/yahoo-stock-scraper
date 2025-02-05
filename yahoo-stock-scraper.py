@@ -16,7 +16,7 @@ from lib import common
 #####                                                                    #####
 ##############################################################################
 
-version_number = (0, 4, 5)
+version_number = (0, 4, 6)
 
 subfolder_path = 'data/'
 config_folder_path = 'csv_config_files/'
@@ -54,7 +54,8 @@ merge_file_monthly = args.mergefile_monthly
 
 base_url = 'https://finance.yahoo.com/quote/'+url_stock_name
 
-output_path = common.create_stock_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
+output_folder_path,file_name = common.create_stock_output_filepath(alt_stock_name,subfolder_path,data_folder_output_base_path,merge_file,merge_file_monthly)
+output_path=output_folder_path+'/'+file_name
 
 # Read in commodity types for scraping 
 if args.comm_type:
