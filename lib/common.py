@@ -9,7 +9,7 @@ def test_path(output_folder_path):
         # print(os.path.dirname(output_folder_path))
         pass
     else:
-        print('Failed to find path to data ', os.path(output_folder_path),'\n    Creating missing folders')
+        print('Failed to find path to data ', os.path(output_folder_path),f'\n    Creating missing folders')
         Path(output_folder_path).mkdir( parents=True, exist_ok=True)
         # raise SystemExit('Path to '+output_folder_path+' not found')
 
