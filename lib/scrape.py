@@ -37,6 +37,8 @@ def get_page(url_to_scrape, is_unit_test=False):
         'DNT'             : '1', # Do Not Track Request Header
         'Connection'      : 'close'
     }
+    local_time = strftime('%I:%M:%S',localtime())
+
     if is_unit_test:
         from pathlib import Path
         stock='GC%3DF'
@@ -63,17 +65,18 @@ def get_page(url_to_scrape, is_unit_test=False):
             html_request.raise_for_status()
     except requests.exceptions.Timeout as e_t:
         if is_unit_test:
-            print('  A timeout error has occurred getting page with error message: \n',e_t)
+            print(local_time,'  A timeout error has occurred getting page ', url_to_scrape,' with error message: \n',e_t)
         return ("A timeout exception has occurred:" + repr(e_t))
     except requests.exceptions.RequestException as e:
         if is_unit_test:
-            print('  An error has occurred getting page with error message: \n', e)
+            print(local_time,'  An error has occurred getting page ', url_to_scrape,' with error message: \n', e)
         return ("An exception has occurred: \n" + repr(e))
 
 ##### Scraping info #####
 def bs_scraper(url_to_scrape, is_unit_test=False):
 
     day_of_week = strftime('%a',localtime())
+    local_time = strftime('%I:%M:%S',localtime())
     # print(day_of_week)
 
     if ('Sat' or 'Sun') in day_of_week:
@@ -86,7 +89,12 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         sleep_time(3) # Randomly sleep to increase variability
         web_request = get_page(url_to_scrape)
         # Parsing the HTML
-        soup_html_output = bSoup(web_request.content, 'html.parser')
+        try:
+            soup_html_output = bSoup(web_request.content, 'html.parser')
+        except AttributeError as e_ae:
+            print('  An error has occurred getting page with error message: \n ' )
+            content = "AttributeError" + " exception has occurred:" + local_time + "\n" + str(e_ae)
+            soup_html_output = content
     else:
         web_request = get_page(url_to_scrape,is_unit_test)
         # Parsing the HTML
