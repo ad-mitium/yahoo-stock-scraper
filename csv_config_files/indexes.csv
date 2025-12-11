@@ -1,2 +1,2 @@
-"^DJI","^GSPC","^IXIC","^FTSE"
-"Dow Jones","SP 500","NASDAQ","FTSE 100"
+"^DJI","^GSPC","^IXIC","^FTSE","^NYA","^XAX"."^VIX"
+"Dow Jones","SP 500","NASDAQ","FTSE 100","NYSE","NYSE Amer Comp","CBOE Volatility"
