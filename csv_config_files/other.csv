@@ -1,2 +1,2 @@
-"NG=F","CL=F","GC=F","^DJI","^GSPC","^IXIC","RB=F",HO=F,"ZN=F","^TNX"
-"NG-hourly","Oil-hourly","Gold-hourly","DJIA-hourly","SP-500-hourly","NASDAQ-hourly","Gas-hourly","Heating-Oil","US-10yr-TNote-hourly","US-10yr-Bond" 
+"^DJI","^GSPC","^IXIC","NG=F","CL=F","GC=F","SI=F","PL=F","HG=F","RB=F",HO=F,"ZN=F","^TNX"
+"DJIA-hourly","SP-500-hourly","NASDAQ-hourly","NG-hourly","Oil-hourly","Gold-hourly","Silver-hourly","Platinum-hourly","Copper-hourly","Gas-hourly","Heating-Oil","US-10yr-TNote-hourly","US-10yr-Bond" 
