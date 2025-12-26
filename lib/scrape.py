@@ -92,8 +92,8 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         try:
             soup_html_output = bSoup(web_request.content, 'html.parser')
         except AttributeError as e_ae:
-            print('  An error has occurred getting page with error message: \n ' )
-            content = "AttributeError" + " exception has occurred:" + local_time + "\n" + str(e_ae)
+            content = "AttributeError" + " exception has occurred:      Occurred at" + local_time + "\n" + str(e_ae)
+            print('  An error has occurred getting page ', url_to_scrape, ' with error message: \n '+ content )
             soup_html_output = content
     else:
         web_request = get_page(url_to_scrape,is_unit_test)
@@ -153,7 +153,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
             print('    fin-streamer data: ',fin_streamer)     # Dump div data for assessment
             content = 'Scrape Failed -> NoneType found'
             #content = ' Scrape failed because fin-streamer not found'  # send exception alert as data
-            write_error_data(create_output_filepath(subfolder_path,app_name,error_filename_prefix,True,True),div_id.find('fin-streamer'))
+            write_error_data(create_output_filepath(subfolder_path,app_name,error_filename_prefix,True,True),content)
 
             # Implement error logging for troubleshooting
             import re
