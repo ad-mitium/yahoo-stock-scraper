@@ -92,7 +92,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
         try:
             soup_html_output = bSoup(web_request.content, 'html.parser')
         except AttributeError as e_ae:
-            content = "AttributeError" + " exception has occurred:      Occurred at" + local_time + "\n" + str(e_ae)
+            content = "AttributeError" + " exception has occurred:      Occurred at " + local_time + "\n" + str(e_ae)
             print('  An error has occurred getting page ', url_to_scrape, ' with error message: \n '+ content )
             soup_html_output = content
     else:
