@@ -10,7 +10,7 @@ subfolder_path = 'data'     # Folder name to store created debug file
 yahoo_class_name = 'price'          # div class name closest to data we want
 yahoo_data_field_name = 'span'      # Closest html tag to data we want
 
-yahoo_comm_class_name = ''          # Not in use, since the page source isn't being modified constantly
+yahoo_comm_class_name = 'down'          # Not in use, since the page source isn't being modified constantly
 yahoo_comm_data_field_name = ''     # Not in use, since the page source isn't being modified constantly
 
 # Issues with BeautifulSoup: apt install python3-bs4
@@ -137,7 +137,7 @@ def bs_scraper(url_to_scrape, is_unit_test=False):
             try:
                 if is_unit_test:
                     print('    try text strip')
-                content = datafield.find('span').text.strip()
+                content = datafield.find('span',class_= yahoo_class_name).text.strip()
             except AttributeError:
                 
                 content = "No Data Acquired"
